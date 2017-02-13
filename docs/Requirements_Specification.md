@@ -98,5 +98,5 @@ Utilizing pre-built frameworks such as Ionic and using Firebase will expedite de
 
 | Category | Requirement |
 |---|---|
-| Front End | Ionic, HTML, CSS, JavaScript |
+| Front End | Ionic, AngularJS,  |
 | Server | Firebase |
