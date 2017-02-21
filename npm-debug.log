@@ -1,0 +1,115 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/6.2.1/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'ionic2@beta' ]
+2 info using npm@3.10.8
+3 info using node@v7.0.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData ionic2@beta
+8 silly fetchNamedPackageData ionic2
+9 silly mapToRegistry name ionic2
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'ionic2',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'ionic2',
+12 silly mapToRegistry   name: 'ionic2',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/ionic2
+14 verbose request uri https://registry.npmjs.org/ionic2
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 5:14:51 PM
+17 verbose request id c937813614daf400
+18 http request GET https://registry.npmjs.org/ionic2
+19 http 200 https://registry.npmjs.org/ionic2
+20 verbose headers { server: 'nginx/1.10.1',
+20 verbose headers   'content-type': 'application/json',
+20 verbose headers   'last-modified': 'Fri, 05 Feb 2016 21:33:24 GMT',
+20 verbose headers   etag: 'W/"56b51524-55f"',
+20 verbose headers   'content-encoding': 'gzip',
+20 verbose headers   'cache-control': 'max-age=300',
+20 verbose headers   'content-length': '681',
+20 verbose headers   'accept-ranges': 'bytes',
+20 verbose headers   date: 'Tue, 21 Feb 2017 01:14:51 GMT',
+20 verbose headers   via: '1.1 varnish',
+20 verbose headers   age: '0',
+20 verbose headers   connection: 'keep-alive',
+20 verbose headers   'x-served-by': 'cache-lax8638-LAX',
+20 verbose headers   'x-cache': 'MISS',
+20 verbose headers   'x-cache-hits': '0',
+20 verbose headers   'x-timer': 'S1487639691.430788,VS0,VE199',
+20 verbose headers   vary: 'Accept-Encoding' }
+21 silly get cb [ 200,
+21 silly get   { server: 'nginx/1.10.1',
+21 silly get     'content-type': 'application/json',
+21 silly get     'last-modified': 'Fri, 05 Feb 2016 21:33:24 GMT',
+21 silly get     etag: 'W/"56b51524-55f"',
+21 silly get     'content-encoding': 'gzip',
+21 silly get     'cache-control': 'max-age=300',
+21 silly get     'content-length': '681',
+21 silly get     'accept-ranges': 'bytes',
+21 silly get     date: 'Tue, 21 Feb 2017 01:14:51 GMT',
+21 silly get     via: '1.1 varnish',
+21 silly get     age: '0',
+21 silly get     connection: 'keep-alive',
+21 silly get     'x-served-by': 'cache-lax8638-LAX',
+21 silly get     'x-cache': 'MISS',
+21 silly get     'x-cache-hits': '0',
+21 silly get     'x-timer': 'S1487639691.430788,VS0,VE199',
+21 silly get     vary: 'Accept-Encoding' } ]
+22 verbose get saving ionic2 to /Users/Mondo/.npm/registry.npmjs.org/ionic2/.cache.json
+23 verbose correctMkdir /Users/Mondo/.npm correctMkdir not in flight; initializing
+24 silly fetchPackageMetaData Error: No compatible version found: ionic2@beta
+24 silly fetchPackageMetaData Valid install targets:
+24 silly fetchPackageMetaData 0.0.0
+24 silly fetchPackageMetaData
+24 silly fetchPackageMetaData     at pickVersionFromRegistryDocument (/usr/local/lib/node_modules/npm/lib/fetch-package-metadata.js:178:16)
+24 silly fetchPackageMetaData     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:13:50
+24 silly fetchPackageMetaData     at /usr/local/lib/node_modules/npm/lib/utils/pulse-till-done.js:20:8
+24 silly fetchPackageMetaData     at saved (/usr/local/lib/node_modules/npm/lib/cache/caching-client.js:174:7)
+24 silly fetchPackageMetaData     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:233:18
+24 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:111:15)
+24 silly fetchPackageMetaData  error for ionic2@beta { Error: No compatible version found: ionic2@beta
+24 silly fetchPackageMetaData Valid install targets:
+24 silly fetchPackageMetaData 0.0.0
+24 silly fetchPackageMetaData
+24 silly fetchPackageMetaData     at pickVersionFromRegistryDocument (/usr/local/lib/node_modules/npm/lib/fetch-package-metadata.js:178:16)
+24 silly fetchPackageMetaData     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:13:50
+24 silly fetchPackageMetaData     at /usr/local/lib/node_modules/npm/lib/utils/pulse-till-done.js:20:8
+24 silly fetchPackageMetaData     at saved (/usr/local/lib/node_modules/npm/lib/cache/caching-client.js:174:7)
+24 silly fetchPackageMetaData     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:233:18
+24 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:111:15) code: 'ETARGET' }
+25 silly rollbackFailedOptional Starting
+26 silly rollbackFailedOptional Finishing
+27 silly runTopLevelLifecycles Finishing
+28 silly install printInstalled
+29 verbose stack Error: No compatible version found: ionic2@beta
+29 verbose stack Valid install targets:
+29 verbose stack 0.0.0
+29 verbose stack
+29 verbose stack     at pickVersionFromRegistryDocument (/usr/local/lib/node_modules/npm/lib/fetch-package-metadata.js:178:16)
+29 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:13:50
+29 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/pulse-till-done.js:20:8
+29 verbose stack     at saved (/usr/local/lib/node_modules/npm/lib/cache/caching-client.js:174:7)
+29 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:233:18
+29 verbose stack     at FSReqWrap.oncomplete (fs.js:111:15)
+30 verbose cwd /Users/Mondo/Desktop/402/CMSI402
+31 error Darwin 15.6.0
+32 error argv "/usr/local/Cellar/node/6.2.1/bin/node" "/usr/local/bin/npm" "install" "-g" "ionic2@beta"
+33 error node v7.0.0
+34 error npm  v3.10.8
+35 error code ETARGET
+36 error notarget No compatible version found: ionic2@beta
+36 error notarget Valid install targets:
+36 error notarget 0.0.0
+37 error notarget This is most likely not a problem with npm itself.
+37 error notarget In most cases you or one of your dependencies are requesting
+37 error notarget a package version that doesn't exist.
+38 verbose exit [ 1, true ]
