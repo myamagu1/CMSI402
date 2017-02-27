@@ -12,7 +12,7 @@ The Reppy system architecture is comprised of  two layers. The first is the clie
 </p>
 
 ## Outline of Requirements Specifications
-5.2	CSCI Component Breakdown
+5.2	CSCI Component Breakdown--
 5.3	Functional Requirements by CSC
 5.4	Performance Requirements by CSC
 5.5	Project Environment Requirements
