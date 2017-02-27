@@ -21,7 +21,7 @@ Windows Phone      |               | ✓
 16 GB Storage      | ✓             | ✓
 screen             | ✓             | ✓
 Wifi connection    | ✓             | ✓
-Ethernet connection | ✓            | 
+Ethernet connection | ✓            |
 Intel or ARM processor | ✓         | ✓
 
 ###4.2.2 Software Resources
@@ -35,3 +35,8 @@ Windows OS            | ✓             | ✓
 Android OS            | ✓             | ✓
 Firebase              | ✓             |
 GitHub                | ✓             |
+
+## 4.5 User Manual
+
+Installation and running instructions are on [README](../README.md)
+Users can use their username and password credentials to login to the application from the login page.
