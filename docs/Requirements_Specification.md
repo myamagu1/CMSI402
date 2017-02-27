@@ -3,7 +3,7 @@
 
 ## 5.1	Introduction
 
-This Software Requirements Specification (SRS) documents the requirements for a mobile application called Reppy. Reppy is an application that lets its user follow the restaurant reviews of only family, friends or anyone of the user’s choosing. The app has three pages: Home, Profile and Search. In the Home page, users will be able to browse reviews of restaurants that have been reviewed by people they are following. The Profile page will contain the user’s own reviews, number of posts, number of followers and number of people that the user is following. The Search will let users find family, friends or people users would like to follow.
+This Software Requirements Specification (SRS) documents the requirements for a mobile application called Reppy. The Reppy is an application that lets its user follow the restaurant reviews of only family, friends or anyone of the user’s choosing. The app has three pages: Home, Profile and Search. In the Home page, users will be able to browse reviews of restaurants that have been reviewed by people they are following. The Profile page will contain the user’s own reviews, number of posts, number of followers and number of people that the user is following. The Search will let users find family, friends or people users would like to follow.
 
 The Reppy system architecture is comprised of  two layers. The first is the client(Ionic), and the second is the server(Firebase). On the client side there is an Angular fire layer which interacts with Firebase and acts as a service layer for the application. It is this layer that gives the power to keep the data in sync between the server (Firebase) and the client.
 
