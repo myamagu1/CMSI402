@@ -36,7 +36,14 @@ Android OS            | ✓             | ✓
 Firebase              | ✓             |
 GitHub                | ✓             |
 
-## 4.5 User Manual
+##4.3 Project Schedule
+
+###4.3.1 GANTT Chart
+![Gantt1](../resources/GANTT_Chart1.png)
+![Gantt1](../resources/GANTT_Chart2.png)
+![Gantt1](../resources/GANTT_Chart3.png)
+
+## 4.4 User Manual
 
 Installation and running instructions are on [README](../README.md)
 Users can use their username and password credentials to login to the application from the login page.
