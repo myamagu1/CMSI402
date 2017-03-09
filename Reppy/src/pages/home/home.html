@@ -9,7 +9,9 @@
 <ion-content padding>
   <ion-list>
   <ion-item class="text" *ngFor="let item of items | async">
-    {{item.$value}}
+    {{item | json}}
   </ion-item>
   </ion-list>
+
+  <button ion-button outline (click)="signInWithFacebook()">Facebook</button>
 </ion-content>
