@@ -1,16 +1,18 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { NgModule } from '@angular/core';
+import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule } from 'angularfire2';
+import { AuthService } from '../providers/auth-service';
+
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyAMDhxU69glVb2qkr_6JzsCprh9SXDdsFk",
-    authDomain: "reppy-b9a64.firebaseapp.com",
-    databaseURL: "https://reppy-b9a64.firebaseio.com",
-    storageBucket: "reppy-b9a64.appspot.com",
-    messagingSenderId: "721607679516"
+  apiKey: "xxxxxxxxxx",
+  authDomain: "your-domain-name.firebaseapp.com",
+  databaseURL: "https://your-domain-name.firebaseio.com",
+  storageBucket: "your-domain-name.appspot.com",
+  messagingSenderId: '<your-messaging-sender-id>'
 };
 
 @NgModule({
@@ -27,6 +29,6 @@ export const firebaseConfig = {
     MyApp,
     HomePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [AuthService]
 })
-export class AppModule {}
+export class AppModule { }
