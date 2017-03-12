@@ -13,12 +13,12 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ViewCtrl: ViewController) {
-      
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+
   }
 
   closeRegisterPager() {
-      this.ViewCtrl.dismiss();
+      this.viewCtrl.dismiss();
   }
 
   ionViewDidLoad() {
