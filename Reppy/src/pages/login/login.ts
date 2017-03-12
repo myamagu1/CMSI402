@@ -13,7 +13,17 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+public emailField: any;
+public passwordField: any;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    //   this.emailField = "mondo@gmail.com";
+  }
+
+  submitLogin() {
+      alert("Logged in");
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');

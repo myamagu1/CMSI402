@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 export class MyApp {
   // public rootPage: any = null;
   rootPage = LoginPage;
+  
 
   constructor(platform: Platform) {
 
