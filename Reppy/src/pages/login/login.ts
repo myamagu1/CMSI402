@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 /*
   Generated class for the Login page.
@@ -17,12 +17,16 @@ public emailField: any;
 public passwordField: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ModalCtrl: ModalController) {
     //   this.emailField = "mondo@gmail.com";
   }
 
   submitLogin() {
       alert("Logged in");
+  }
+
+  submitRegister() {
+      alert("Registered clicked");
   }
 
   ionViewDidLoad() {
