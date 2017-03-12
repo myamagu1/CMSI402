@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { RegisterPage } from '../register/register';
 
 /*
   Generated class for the Login page.
@@ -26,7 +27,8 @@ public passwordField: any;
   }
 
   submitRegister() {
-      alert("Registered clicked");
+      let registerModal = this.ModalCtrl.create(RegisterPage);
+      registerModal.present();
   }
 
   ionViewDidLoad() {
