@@ -5,8 +5,9 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { Login } from '../pages/login/login';
-import { ResetPassword } from '../pages/reset-password/reset-password';
+import { LoginPage } from '../pages/login/login';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import * as firebase from 'firebase';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,8 @@ import { ResetPassword } from '../pages/reset-password/reset-password';
     ContactPage,
     HomePage,
     TabsPage,
-    Login,
-    ResetPassword
+    LoginPage,
+    ResetPasswordPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -28,8 +29,8 @@ import { ResetPassword } from '../pages/reset-password/reset-password';
     ContactPage,
     HomePage,
     TabsPage,
-    Login,
-    ResetPassword
+    LoginPage,
+    ResetPasswordPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
