@@ -28,4 +28,11 @@
     <button ion-button (click)="submitLogin()">Login</button>
     <button ion-button (click)="submitRegister()">Register</button>
 
+    <ion-list>
+        <p>Users</p>
+        <ion-item *ngFor="let user of usersList">
+            <ion-label>{{user.name.first}} {{user.name.last}}</ion-label>
+        </ion-item>
+    </ion-list>
+
 </ion-content>
