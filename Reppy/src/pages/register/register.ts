@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { ResetPasswordPage } from '../reset-password/reset-password';
 
 /*
   Generated class for the Register page.
@@ -17,8 +18,12 @@ export class RegisterPage {
 
   }
 
-  closeRegisterPager() {
+  closeRegisterPage() {
       this.viewCtrl.dismiss();
+  }
+
+  RedirectToResetPage() {
+      this.navCtrl.push(ResetPasswordPage);
   }
 
   ionViewDidLoad() {
