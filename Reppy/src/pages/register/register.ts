@@ -23,7 +23,16 @@ export class RegisterPage {
   }
 
   RedirectToResetPage() {
-      this.navCtrl.push(ResetPasswordPage);
+
+      var allContents = {
+          name: 'Mondo',
+          viewer: 'Ryoma',
+          randNumber: '05051993'
+      }
+
+      this.navCtrl.push(ResetPasswordPage, {
+          userdetails: allContents
+      });
   }
 
   ionViewDidLoad() {

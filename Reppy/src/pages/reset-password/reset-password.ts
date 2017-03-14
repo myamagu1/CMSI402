@@ -13,7 +13,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ResetPasswordPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public username: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+      this.username = this.navParams.get('userdetails').name;
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResetPasswordPage');
