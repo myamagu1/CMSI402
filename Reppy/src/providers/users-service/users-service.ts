@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import * as firebase from 'firebase';
 
 /*
   Generated class for the UsersService provider.
@@ -12,9 +13,12 @@ import 'rxjs/add/operator/map';
 export class UsersService {
 
   private data: any;
+  public fireAuth: any;
+  public userProfile: any;
 
   constructor(public http: Http) {
-    console.log('Hello UsersService Provider');
+    this.fireAuth = firebase.auth();
+    this.userProfile = firebase.database().ref('users');
   }
 
   loadUser(number) {
@@ -29,6 +33,18 @@ export class UsersService {
                   resolve(this.data);
               })
       })
+  }
+
+  signUpUser(email: string, password: string) {
+      return this.fireAuth.createUserWithEmailAndPassword(email, password).then((newUser) => {
+          // sign in the user
+          this.fireAuth.signInWithEmailAndPassword(email, password).then((authenticatedUser) => {
+              // successfully loged in and create user profile
+              this.userProfile.child(authenticatedUser.uid).set({
+                  email: email
+              });
+          });
+      });
   }
 
 }

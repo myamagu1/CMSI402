@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
+import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
 
 
@@ -23,9 +24,26 @@ public users = [];
 public usersList: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ModalCtrl: ModalController, private usersService: UsersService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ModalCtrl: ModalController, private usersService: UsersService, private loadingCtrl: LoadingController) {
     //   this.emailField = "mondo@gmail.com";
+    this.emailField = "";
+    this.passwordField = "";
     this.listOurUsers();
+  }
+
+  signUserUp() {
+      this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
+          // Successful
+          this.navCtrl.setRoot(HomePage);
+      }, error => {
+        //   alert("error logging in: " + error.message);
+      });
+
+      let loader = this.loadingCtrl.create({
+          dismissOnPageChange: true,
+      });
+
+      loader.present();
   }
 
   listOurUsers() {
