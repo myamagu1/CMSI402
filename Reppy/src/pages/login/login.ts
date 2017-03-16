@@ -54,12 +54,24 @@ public usersList: any;
   }
 
   submitLogin() {
-      alert("Logged in");
+      this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
+          // Successful
+          this.navCtrl.setRoot(HomePage);
+      }, error => {
+        //   alert("error logging in: " + error.message);
+      });
+
+      let loader = this.loadingCtrl.create({
+          dismissOnPageChange: true,
+      });
+
+      loader.present();
   }
 
   submitRegister() {
-      let registerModal = this.ModalCtrl.create(RegisterPage);
-      registerModal.present();
+    alert("Registered!");
+    //   let registerModal = this.ModalCtrl.create(RegisterPage);
+    //   registerModal.present();
   }
 
   ionViewDidLoad() {

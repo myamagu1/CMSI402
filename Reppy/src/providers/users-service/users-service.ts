@@ -47,4 +47,12 @@ export class UsersService {
       });
   }
 
+  loginUser(email: string, password: string) : any {
+      return this.fireAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  logoutUser() {
+      return this.fireAuth.signOut();
+  }
+
 }
