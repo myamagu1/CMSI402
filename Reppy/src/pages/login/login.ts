@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
@@ -24,7 +24,7 @@ public users = [];
 public usersList: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ModalCtrl: ModalController, private usersService: UsersService, private loadingCtrl: LoadingController) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private ModalCtrl: ModalController, private usersService: UsersService, private loadingCtrl: LoadingController) {
     //   this.emailField = "mondo@gmail.com";
     this.emailField = "";
     this.passwordField = "";
@@ -58,7 +58,13 @@ public usersList: any;
           // Successful
           this.navCtrl.setRoot(HomePage);
       }, error => {
-        //   alert("error logging in: " + error.message);
+         // alert("error logging in: "+ error.message);
+  		let alert = this.alertCtrl.create({
+	      title: 'Error loggin in',
+	      subTitle: error.message,
+	      buttons: ['OK']
+	    });
+	    alert.present();
       });
 
       let loader = this.loadingCtrl.create({
