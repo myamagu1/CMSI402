@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomePage } from '../home/home';
+import { UsersDetailPage } from '../users-detail/users-detail';
 import { NavController } from 'ionic-angular';
 
 @Component({
