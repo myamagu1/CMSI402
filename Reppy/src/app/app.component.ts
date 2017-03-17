@@ -12,17 +12,17 @@ import * as firebase from 'firebase';
 export class MyApp {
   // public rootPage: any = null;
   rootPage = LoginPage;
-  
+
 
   constructor(platform: Platform) {
 
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyAMDhxU69glVb2qkr_6JzsCprh9SXDdsFk",
-      authDomain: "reppy-b9a64.firebaseapp.com",
-      databaseURL: "https://reppy-b9a64.firebaseio.com",
-      storageBucket: "reppy-b9a64.appspot.com",
-      messagingSenderId: "721607679516"
+        apiKey: "AIzaSyAMDhxU69glVb2qkr_6JzsCprh9SXDdsFk",
+        authDomain: "reppy-b9a64.firebaseapp.com",
+        databaseURL: "https://reppy-b9a64.firebaseio.com",
+        storageBucket: "reppy-b9a64.appspot.com",
+        messagingSenderId: "721607679516"
     };
     firebase.initializeApp(config);
 

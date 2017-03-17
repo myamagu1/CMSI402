@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
-import { RegisterPage } from '../register/register';
+// import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
+// import * as firebase from 'firebase';
 
 
 /*
@@ -20,16 +21,16 @@ export class LoginPage {
 
 public emailField: any;
 public passwordField: any;
-public users = [];
-public usersList: any;
+// private users = [];
+private usersList : any;
 
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private ModalCtrl: ModalController, private usersService: UsersService, private loadingCtrl: LoadingController) {
+ constructor(private alertCtrl: AlertController , private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService) {
     //   this.emailField = "mondo@gmail.com";
     this.emailField = "";
     this.passwordField = "";
     this.listOurUsers();
-  }
+ }
 
   signUserUp() {
       this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
@@ -53,7 +54,10 @@ public usersList: any;
       })
   }
 
+
+// Login
   submitLogin() {
+    //   alert(this.passwordField);
       this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
           // Successful
           this.navCtrl.setRoot(HomePage);
