@@ -19,73 +19,129 @@ import { UsersService } from '../../providers/users-service/users-service';
 })
 export class LoginPage {
 
-public emailField: any;
-public passwordField: any;
-// private users = [];
-private usersList : any;
+    public emailField: any;
+    public passwordField: any;
+    // private users = [];
+    private usersList : any;
 
 
- constructor(private alertCtrl: AlertController , private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService) {
-    //   this.emailField = "mondo@gmail.com";
-    this.emailField = "";
-    this.passwordField = "";
-    this.listOurUsers();
- }
+     constructor(private alertCtrl: AlertController , private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService) {
+        //   this.emailField = "mondo@gmail.com";
+        this.emailField = "";
+        this.passwordField = "";
+        this.listOurUsers();
+     }
 
-  signUserUp() {
-      this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
-          // Successful
-          this.navCtrl.setRoot(HomePage);
-      }, error => {
-        //   alert("error logging in: " + error.message);
-      });
+      signUserUp() {
+          this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
+              // Successful
+              this.navCtrl.setRoot(HomePage);
+          }, error => {
+            //   alert("error logging in: " + error.message);
+          });
 
-      let loader = this.loadingCtrl.create({
-          dismissOnPageChange: true,
-      });
+          let loader = this.loadingCtrl.create({
+              dismissOnPageChange: true,
+          });
 
-      loader.present();
-  }
+          loader.present();
+      }
 
-  listOurUsers() {
-      this.usersService.loadUser(10)
-      .then(data => {
-          this.usersList = data;
-      })
-  }
+      listOurUsers() {
+          this.usersService.loadUser(10)
+          .then(data => {
+              this.usersList = data;
+          })
+      }
 
 
-// Login
-  submitLogin() {
-    //   alert(this.passwordField);
-      this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
-          // Successful
-          this.navCtrl.setRoot(HomePage);
-      }, error => {
-         // alert("error logging in: "+ error.message);
-  		let alert = this.alertCtrl.create({
-	      title: 'Error loggin in',
-	      subTitle: error.message,
-	      buttons: ['OK']
-	    });
-	    alert.present();
-      });
+      // Login
+      submitLogin() {
+        //   alert(this.passwordField);
+          this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
+              // Successful
+              this.navCtrl.setRoot(HomePage);
+          }, error => {
+             // alert("error logging in: "+ error.message);
+      		let alert = this.alertCtrl.create({
+    	      title: 'Error loggin in',
+    	      subTitle: error.message,
+    	      buttons: ['OK']
+    	    });
+    	    alert.present();
+          });
 
-      let loader = this.loadingCtrl.create({
-          dismissOnPageChange: true,
-      });
+          let loader = this.loadingCtrl.create({
+              dismissOnPageChange: true,
+          });
 
-      loader.present();
-  }
+          loader.present();
+      }
 
-  submitRegister() {
-    alert("Registered!");
-    //   let registerModal = this.ModalCtrl.create(RegisterPage);
-    //   registerModal.present();
-  }
+      submitRegister() {
+        alert("Registered!");
+        //   let registerModal = this.ModalCtrl.create(RegisterPage);
+        //   registerModal.present();
+      }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+      showForgotPassword() {
+          let prompt = this.alertCtrl.create({
+              title: 'Enter Your Email',
+              message: "A new password will be sent to your email",
+              inputs: [
+                  {
+                      name: 'recoverEmail',
+                      placeholder: 'you@example.com'
+                  },
+              ],
+              buttons: [
+                  {
+                      text: 'Cancel',
+                      handler: data => {
+                          console.log('Cancel clicked');
+                      }
+                  },
+               {
+                   text: 'Submit',
+                   handler: data => {
+                       //add preloader
+                       let loading = this.loadingCtrl.create({
+     				                  dismissOnPageChange: true,
+     				                             content: 'Reseting your password..'
+     			       });
+     			       loading.present();
+                       //call usersservice
+                       this.usersService.forgotPasswordUser(data.recoverEmail).then(() => {
+                 	   //add toast
+                 	   loading.dismiss().then(() => {
+                 	   //show pop up
+                 	       let alert = this.alertCtrl.create({
+     		                   title: 'Check your email',
+     				    	   subTitle: 'Password reset successful',
+     					       buttons: ['OK']
+     					    });
+     					    alert.present();
+                 	     })
+                 	}, error => {
+                 		//show pop up
+                 		loading.dismiss().then(() => {
+     				  		let alert = this.alertCtrl.create({
+     					      title: 'Error resetting password',
+     					      subTitle: error.message,
+     					      buttons: ['OK']
+     					    });
+     					    alert.present();
+     					 })
+                 	});
+               }
+             }
+           ]
+         });
+         prompt.present();
+       }
+
+      ionViewDidLoad() {
+        console.log('ionViewDidLoad LoginPage');
+      }
 
 }

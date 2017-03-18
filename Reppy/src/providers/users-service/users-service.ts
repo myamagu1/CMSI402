@@ -55,4 +55,12 @@ export class UsersService {
       return this.fireAuth.signOut();
   }
 
+  showForgotPassword(email: any) {
+      return this.fireAuth.sendPasswordResetEmail(email);
+  }
+
+  forgotPasswordUser(email: any){
+      return this.fireAuth.sendPasswordResetEmail(email);
+  }
+
 }

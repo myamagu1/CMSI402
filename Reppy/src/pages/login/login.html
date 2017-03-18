@@ -25,9 +25,14 @@
         </ion-item>
     </ion-list>
 
-    <button ion-button (click)="submitLogin()">Login</button>
-    <button ion-button (click)="signUserUp()">Register</button>
+    <ion-buttons class="joinButtons">
+        <button ion-button (click)="submitLogin()">Login</button>
+        <button ion-button (click)="signUserUp()">Signup</button>
+    </ion-buttons>
 
+    <div class="fpbutton">
+        <button ion-button full clear (click)="showForgotPassword()">Forgot Password</button>
+    </div>
     <ion-list>
         <p>Users</p>
         <ion-item *ngFor="let user of usersList">
