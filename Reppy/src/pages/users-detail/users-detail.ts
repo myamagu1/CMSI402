@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { UsersService } from '../../providers/users-service/users-service';
+import { LoginPage } from '../login/login';
+
+
 
 /*
   Generated class for the UsersDetail page.
@@ -9,11 +13,19 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-users-detail',
-  templateUrl: 'users-detail.html'
+  templateUrl: 'users-detail.html',
+  providers: [UsersService]
 })
 export class UsersDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService ) {}
+
+  logUserOut() {
+    //   this.userService.logoutUser();
+    this.usersService.logoutUser().then(() => {
+        this.navCtrl.setRoot(LoginPage);
+    });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UsersDetailPage');
