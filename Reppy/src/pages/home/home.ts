@@ -3,17 +3,17 @@ import { UsersDetailPage } from '../users-detail/users-detail';
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController) {
 
-  }
+    }
 
-  redirectToUserDetailPage() {
-      this.navCtrl.push(UsersDetailPage)
-  }
+    redirectToUserDetailPage() {
+        this.navCtrl.push(UsersDetailPage)
+    }
 
 }

@@ -12,32 +12,32 @@ import { UsersDetailPage } from '../pages/users-detail/users-detail';
 import * as firebase from 'firebase';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    LoginPage,
-    ResetPasswordPage,
-    RegisterPage,
-    UsersDetailPage
-  ],
-  imports: [
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    LoginPage,
-    ResetPasswordPage,
-    RegisterPage,
-    UsersDetailPage
-  ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+    declarations: [
+        MyApp,
+        AboutPage,
+        ContactPage,
+        HomePage,
+        TabsPage,
+        LoginPage,
+        ResetPasswordPage,
+        RegisterPage,
+        UsersDetailPage
+    ],
+    imports: [
+        IonicModule.forRoot(MyApp)
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        AboutPage,
+        ContactPage,
+        HomePage,
+        TabsPage,
+        LoginPage,
+        ResetPasswordPage,
+        RegisterPage,
+        UsersDetailPage
+    ],
+    providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
