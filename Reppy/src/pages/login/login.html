@@ -4,16 +4,33 @@ Generated template for the Login page.
 See http://ionicframework.com/docs/v2/components/#navigation for more info on
 Ionic pages and navigation.
 -->
-<ion-header>
 
-    <ion-navbar>
-        <ion-title><i class="fa fa-user-plus" aria-hidden="true"></i> Login</ion-title>
-    </ion-navbar>
+<!-- Wide card with share menu button -->
+<style>
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('../assets/demos/welcome_card.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
 
-</ion-header>
+ion-content {
+    background: url('img/background.jpg') center / cover;
+}
 
+</style>
 
 <ion-content padding>
+
+    <div text-center tyle="margin-top: 50px;">
+        <h1 style="color: white">Reppy</h1>
+    </div>
+
     <ion-list>
         <ion-item>
             <!-- <ion-label floating>Email</ion-label> -->
@@ -34,10 +51,10 @@ Ionic pages and navigation.
         <button ion-button light block outline (click)="showForgotPassword()">Forgot Password</button>
     </div>
     <!-- <ion-list>
-        <p>Users</p>
-        <ion-item *ngFor="let user of usersList">
-            <ion-label>{{user.name.first}} {{user.name.last}}</ion-label>
-        </ion-item>
-    </ion-list> -->
+    <p>Users</p>
+    <ion-item *ngFor="let user of usersList">
+    <ion-label>{{user.name.first}} {{user.name.last}}</ion-label>
+</ion-item>
+</ion-list> -->
 
 </ion-content>
