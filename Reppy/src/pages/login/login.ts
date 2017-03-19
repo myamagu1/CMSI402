@@ -21,7 +21,7 @@ export class LoginPage {
 
     public emailField: any;
     public passwordField: any;
-    // private users = [];
+    private users = [];
     private usersList : any;
 
 
@@ -87,7 +87,7 @@ export class LoginPage {
     showForgotPassword() {
         let prompt = this.alertCtrl.create({
             title: 'Enter Your Email',
-            message: "A new password will be sent to your email",
+            message: "An email will be sent to your Primary Email address that includes a password reset link.",
             inputs: [
                 {
                     name: 'recoverEmail',
