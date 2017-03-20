@@ -3,9 +3,25 @@ page-login {
 }
 
 .fpbutton {
-    margin-top: 50px;
+    margin-top: 20px;
+}
+
+.fpButton :hover {
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
 }
 
 .joinButtons {
     text-align: center;
+    margin-top: 15px;
+}
+
+.loginButton :hover {
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
+}
+
+.singupButton :hover {
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
 }
