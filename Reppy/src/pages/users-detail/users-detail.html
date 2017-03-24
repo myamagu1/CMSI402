@@ -20,13 +20,14 @@ Ionic pages and navigation.
 <ion-content padding>
 
     <ion-card text-center>
-        <img src="img/tomato.jpg" style="margin: auto; margin-top: 20px;  border-radius: 500px; height:200px; width: 200px;" />
+        <img src="{{userPhotoUrl}}" style="margin: auto; margin-top: 20px;  border-radius: 500px; height:200px; width: 200px; "/>
+
         <ion-card-content>
-        <ion-card-title>
-            Tomato
-        </ion-card-title>
-            This is my profile details.
-        </ion-card-content>
+    	<ion-card-title>
+    		{{userDislplayName}}
+    	</ion-card-title>
+    		This is my profile details pages.
+    	</ion-card-content>
     </ion-card>
 
     <ion-card>
