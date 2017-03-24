@@ -10,8 +10,8 @@ import * as firebase from 'firebase';
     templateUrl: 'app.html'
 })
 export class MyApp {
-    // public rootPage: any = null;
-    rootPage = LoginPage;
+    public rootPage: any;
+    // rootPage = LoginPage;
 
 
     constructor(platform: Platform) {
@@ -26,13 +26,24 @@ export class MyApp {
         };
         firebase.initializeApp(config);
 
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                this.rootPage = TabsPage;
-            } else {
-                this.rootPage = LoginPage;
-            }
-        });
+
+        var user = firebase.auth().currentUser;
+
+        if (user) {
+            // User is signed in.
+            this.rootPage = TabsPage;
+        } else {
+            // No user is signed in.
+            this.rootPage = LoginPage;
+        }
+
+        // firebase.auth().onAuthStateChanged(function(user) {
+        //     if (user) {
+        //         this.rootPage = TabsPage;
+        //     } else {
+        //
+        //     }
+        // });
 
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.

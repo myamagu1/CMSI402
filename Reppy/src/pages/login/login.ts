@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
 // import { RegisterPage } from '../register/register';
+import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
 // import * as firebase from 'firebase';
@@ -25,7 +26,7 @@ export class LoginPage {
     private usersList : any;
 
 
-    constructor(private alertCtrl: AlertController , private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService) {
+    constructor(private alertCtrl: AlertController , private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController) {
         //   this.emailField = "mondo@gmail.com";
         this.emailField = "";
         this.passwordField = "";
@@ -35,7 +36,8 @@ export class LoginPage {
     signUserUp() {
         this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
             // Successful
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(TabsPage);
+
         }, error => {
             //   alert("error logging in: " + error.message);
         });
@@ -43,7 +45,6 @@ export class LoginPage {
         let loader = this.loadingCtrl.create({
             dismissOnPageChange: true,
         });
-
         loader.present();
     }
 
@@ -54,13 +55,12 @@ export class LoginPage {
         })
     }
 
-
     // Login
     submitLogin() {
         //   alert(this.passwordField);
         this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
             // Successful
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(TabsPage);
         }, error => {
             // alert("error logging in: "+ error.message);
             let alert = this.alertCtrl.create({
@@ -70,11 +70,9 @@ export class LoginPage {
             });
             alert.present();
         });
-
         let loader = this.loadingCtrl.create({
             dismissOnPageChange: true,
         });
-
         loader.present();
     }
 
