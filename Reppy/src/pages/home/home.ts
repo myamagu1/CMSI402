@@ -4,6 +4,7 @@ import { UsersDetailPage } from '../users-detail/users-detail';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import { PostAddPage } from '../post-add/post-add';
+import { SearchPage } from '../search/search';
 import * as firebase from 'firebase';
 
 @Component({
@@ -29,11 +30,11 @@ export class HomePage {
         this.listPosts();
     }
 
-    // redirectToUserDetailPage(){
-    //
-    //     //redirect here
-    //     this.navCtrl.push(UsersDetailPage);
-    // }
+    redirectToSearchPage(){
+
+        //redirect here
+        this.navCtrl.push(SearchPage);
+    }
     //
     // redirectToPostAddPage(){
     //     //redirect here
