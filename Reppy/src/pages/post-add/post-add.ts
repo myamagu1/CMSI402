@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController,LoadingController,AlertController } from 'ionic-angular';
+import { NavController, ViewController,LoadingController, AlertController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
 

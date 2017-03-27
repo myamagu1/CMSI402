@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
 // import { RegisterPage } from '../register/register';
-import { TabsPage } from '../tabs/tabs';
+// import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
 // import * as firebase from 'firebase';
@@ -36,7 +36,7 @@ export class LoginPage {
     signUserUp() {
         this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
             // Successful
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(HomePage);
 
         }, error => {
             //   alert("error logging in: " + error.message);
@@ -60,7 +60,7 @@ export class LoginPage {
         //   alert(this.passwordField);
         this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
             // Successful
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(HomePage);
         }, error => {
             // alert("error logging in: "+ error.message);
             let alert = this.alertCtrl.create({
@@ -76,11 +76,11 @@ export class LoginPage {
         loader.present();
     }
 
-    submitRegister() {
-        alert("Registered!");
+    // submitRegister() {
+    //     alert("Registered!");
         //   let registerModal = this.ModalCtrl.create(RegisterPage);
         //   registerModal.present();
-    }
+    // }
 
     showForgotPassword() {
         let prompt = this.alertCtrl.create({

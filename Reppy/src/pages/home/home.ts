@@ -29,16 +29,16 @@ export class HomePage {
         this.listPosts();
     }
 
-    redirectToUserDetailPage(){
-
-        //redirect here
-        this.navCtrl.push(UsersDetailPage);
-    }
-
-    redirectToPostAddPage(){
-        //redirect here
-        this.navCtrl.push(PostAddPage);
-    }
+    // redirectToUserDetailPage(){
+    //
+    //     //redirect here
+    //     this.navCtrl.push(UsersDetailPage);
+    // }
+    //
+    // redirectToPostAddPage(){
+    //     //redirect here
+    //     this.navCtrl.push(PostAddPage);
+    // }
 
     listPosts(){
         var that = this;
@@ -68,4 +68,5 @@ export class HomePage {
             });
         });
     }
+
 }

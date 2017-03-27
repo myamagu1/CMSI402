@@ -1,3 +1,19 @@
-page-home {
+.title {
+    text-align: center;
+    font-family: Cursive;
+    margin-top: 0px;
+}
 
+.search {
+    margin-top: -10px;
+}
+
+.ion-navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0 90px 1px;
+      width: 100%;
+      height: 100%;
+      text-align: center;
 }
