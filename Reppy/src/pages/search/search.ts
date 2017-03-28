@@ -1,22 +1,26 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 /*
-  Generated class for the Search page.
+Generated class for the Search page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
+See http://ionicframework.com/docs/v2/components/#navigation for more info on
+Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-search',
-  templateUrl: 'search.html'
+    selector: 'page-search',
+    templateUrl: 'search.html'
 })
 export class SearchPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+    constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
-  }
+    closeSearchPage() {
+        this.viewCtrl.dismiss();
+    }
+
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad SearchPage');
+    }
 
 }

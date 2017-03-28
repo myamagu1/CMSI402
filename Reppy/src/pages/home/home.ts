@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { UsersDetailPage } from '../users-detail/users-detail';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
-import { PostAddPage } from '../post-add/post-add';
 import { SearchPage } from '../search/search';
 import * as firebase from 'firebase';
 
