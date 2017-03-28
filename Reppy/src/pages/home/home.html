@@ -7,11 +7,11 @@
     </ion-navbar>
 </ion-header>
 
-<style>
+<!-- /*<style>
 ion-content {
-    background: url('img/tomato.jpg') center / cover;
+background: url('img/tomato.jpg') center / cover;
 }
-</style>
+</style>*/ -->
 
 <ion-content padding >
 
@@ -24,22 +24,23 @@ ion-content {
             <h2>{{userDisplayName}}</h2>
             <p>2pm today</p>
         </ion-item>
+        <img src="img/pasta.jpg">
         <ion-card-content>
             <p>{{post.body}}</p>
         </ion-card-content>
 
         <ion-row>
             <ion-col>
-                <button ion-button  icon-left clear small color="secondary">
+                <button ion-button icon-left clear small>
                     <ion-icon  color="primary" name="thumbs-up"></ion-icon>
+                    <div>12 Likes</div>
                 </button>
-                <div>12 Likes</div>
             </ion-col>
             <ion-col>
-                <button ion-button icon-left clear small color="secondary">
-                    <ion-icon  color="primary" name="text"></ion-icon>
+                <button ion-button icon-left clear small>
+                    <ion-icon color="primary" name="text"></ion-icon>
+                    <div>4 Comments</div>
                 </button>
-                <div>4 Comments</div>
             </ion-col>
             <ion-col center text-center>
                 <ion-note>

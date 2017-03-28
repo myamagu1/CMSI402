@@ -27,24 +27,29 @@ export class MyApp {
         };
         firebase.initializeApp(config);
 
+        var that = this;
 
         var user = firebase.auth().currentUser;
 
         if (user) {
             // User is signed in.
-            this.rootPage = TabsPage;
+            that.rootPage = TabsPage;
         } else {
             // No user is signed in.
-            this.rootPage = LoginPage;
+            that.rootPage = LoginPage;
         }
 
+        //check logged in status
         // firebase.auth().onAuthStateChanged(function(user) {
-        //     if (user) {
-        //         this.rootPage = TabsPage;
-        //     } else {
         //
+        //     if(user) {
+        //         that.rootPage = TabsPage;
+        //     } else {
+        //         that.rootPage = LoginPage;
         //     }
+        //
         // });
+
 
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
