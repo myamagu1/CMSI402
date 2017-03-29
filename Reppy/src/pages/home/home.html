@@ -1,6 +1,6 @@
 <ion-header class="home-header">
     <ion-navbar hideBackButton>
-        <ion-title><h1 color="secondary">Reppy</h1></ion-title>
+        <ion-title><button ion-button clear><h1 color="secondary">Reppy</h1></button></ion-title>
         <ion-buttons>
             <button ion-button color="secondary" clear (click)="redirectToSearchPage()"><ion-icon name="search"></ion-icon></button>
         </ion-buttons>
@@ -13,7 +13,7 @@ background: url('img/tomato.jpg') center / cover;
 }
 </style>*/ -->
 
-<ion-content padding >
+<ion-content class="home">
 
     <ion-card *ngFor="let post of userPostsLists">
 
@@ -24,20 +24,24 @@ background: url('img/tomato.jpg') center / cover;
             <h2>{{userDisplayName}}</h2>
             <p>2pm today</p>
         </ion-item>
+
         <img src="img/pasta.jpg">
+
         <ion-card-content>
             <p>{{post.body}}</p>
         </ion-card-content>
 
+        <hr>
+
         <ion-row>
             <ion-col>
-                <button ion-button icon-left clear small>
+                <button ion-button icon-left outline small>
                     <ion-icon  color="primary" name="thumbs-up"></ion-icon>
                     <div>12 Likes</div>
                 </button>
             </ion-col>
             <ion-col>
-                <button ion-button icon-left clear small>
+                <button ion-button icon-left outline small>
                     <ion-icon color="primary" name="text"></ion-icon>
                     <div>4 Comments</div>
                 </button>

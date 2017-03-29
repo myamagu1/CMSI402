@@ -1,4 +1,4 @@
-ion-navbar ion-title {
+ion-navbar ion-title button {
     font-family: Cursive;
     text-align: center;
 }
@@ -11,8 +11,21 @@ ion-navbar ion-buttons button ion-icon {
 
 ion-col div {
     font-family: Cursive;
+    color: rgb(255, 184, 51);
+    font-weight: bold;
 }
 
 ion-card-content p {
     font-family: Arial;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.home {
+    background-color: rgb(255,245,228);
 }
