@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController,LoadingController, AlertController } from 'ionic-angular';
+import { NavController, ViewController,LoadingController, AlertController, Platform } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
+import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 
 /*
 Generated class for the PostAddPage page.
@@ -17,14 +18,19 @@ Ionic pages and navigation.
 
 export class PostAddPage {
 
+    map: GoogleMap;
+
     private postTitle :any;
     private postBody :any;
     private userId :any;
 
 
-    constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController ) {
+    constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, public platform: Platform ) {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
+        platform.ready().then(() => {
+            this.loadMap();
+        });
     }
 
     addNewPost(){
@@ -67,6 +73,38 @@ export class PostAddPage {
                 alert.present();
             })
         });
+    }
+
+    loadMap() {
+
+        let location = new GoogleMapsLatLng(-34.9290,138.6010);
+
+        this.map = new GoogleMap('map', {
+            'backgroundColor': 'white',
+            'controls': {
+                'compass': true,
+                'myLocationButton': true,
+                'indoorPicker': true,
+                'zoom': true
+            },
+            'gestures': {
+                'scroll': true,
+                'tilt': true,
+                'rotate': true,
+                'zoom': true
+            },
+            'camera': {
+                'latLng': location,
+                'tilt': 30,
+                'zoom': 15,
+                'bearing': 50
+            }
+        });
+
+        this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+            console.log('Map is ready!');
+        });
+
     }
 
     ionViewDidLoad() {

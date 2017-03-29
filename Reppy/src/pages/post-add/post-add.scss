@@ -1,3 +1,22 @@
-page-post-add {
+ion-navbar ion-title button {
+    font-family: Cursive;
+    text-align: center;
+}
 
+// .post {
+//
+// }
+
+ion-navbar {
+    height: 4em;
+}
+
+ion-app._gmaps_cdv_ .nav-decor {
+    background-color: transparent !important;
+}
+
+page-post-add {
+    #map {
+        height: 100%;
+    }
 }
