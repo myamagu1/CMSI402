@@ -9,6 +9,7 @@ import { RegisterPage } from '../pages/register/register';
 import { UsersDetailPage } from '../pages/users-detail/users-detail';
 import { PostAddPage } from '../pages/post-add/post-add';
 import { SearchPage } from '../pages/search/search';
+import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import * as firebase from 'firebase';
 
 @NgModule({
@@ -21,7 +22,8 @@ import * as firebase from 'firebase';
         RegisterPage,
         UsersDetailPage,
         PostAddPage,
-        SearchPage
+        SearchPage,
+        AutocompletePage
     ],
     imports: [
         IonicModule.forRoot(MyApp)
@@ -36,7 +38,8 @@ import * as firebase from 'firebase';
         RegisterPage,
         UsersDetailPage,
         PostAddPage,
-        SearchPage
+        SearchPage,
+        AutocompletePage
     ],
     providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, ViewController,LoadingController, AlertController } from 'ionic-angular';
+import { NavController, ViewController,LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
 import { Geolocation } from 'ionic-native';
-
+import { AutocompletePage } from '../autocomplete/autocomplete';
 
 /*
 Generated class for the PostAddPage page.
@@ -12,6 +12,7 @@ Ionic pages and navigation.
 */
 
 declare var google;
+
 @Component({
     selector: 'page-post-add',
     templateUrl: 'post-add.html',
@@ -21,23 +22,35 @@ declare var google;
 export class PostAddPage {
 
     @ViewChild('map') mapElement: ElementRef;
-    map: any;
-
+    private map: any;
+    private address: any;
     private postTitle :any;
     private postBody :any;
     private userId :any;
 
 
-    constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController ) {
+    constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController ) {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
+        this.address = {
+            place: ''
+        };
+    }
+
+    showAddressModal () {
+        let modal = this.modalCtrl.create(AutocompletePage);
+        let me = this;
+        modal.onDidDismiss(data => {
+            this.address.place = data;
+        });
+        modal.present();
     }
 
     ionViewDidLoad() {
         this.loadMap();
     }
 
-    loadMap(){
+    loadMap() {
 
         Geolocation.getCurrentPosition().then((position) => {
 
@@ -56,17 +69,31 @@ export class PostAddPage {
         });
     }
 
-    addInfoWindow(marker, content){
-
-        let infoWindow = new google.maps.InfoWindow({
-            content: content
-        });
-
-        google.maps.event.addListener(marker, 'click', () => {
-            infoWindow.open(this.map, marker);
-        });
-
-    }
+    // addMarker() {
+    //
+    //     let marker = new google.maps.Marker({
+    //         map: this.map,
+    //         animation: google.maps.Animation.DROP,
+    //         position: this.map.getCenter()
+    //     });
+    //
+    //     let content = "<h4>Information!</h4>";
+    //
+    //     this.addInfoWindow(marker, content);
+    //
+    // }
+    //
+    // addInfoWindow(marker, content) {
+    //
+    //     let infoWindow = new google.maps.InfoWindow({
+    //         content: content
+    //     });
+    //
+    //     google.maps.event.addListener(marker, 'click', () => {
+    //         infoWindow.open(this.map, marker);
+    //     });
+    //
+    // }
 
     addNewPost(){
 
