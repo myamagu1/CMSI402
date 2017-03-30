@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, ViewController,LoadingController, AlertController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
+import { Geolocation } from 'ionic-native';
+
 
 /*
 Generated class for the PostAddPage page.
@@ -37,15 +39,32 @@ export class PostAddPage {
 
     loadMap(){
 
-        let latLng = new google.maps.LatLng(36.204824, 138.252924);
+        Geolocation.getCurrentPosition().then((position) => {
 
-        let mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
+            let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            let mapOptions = {
+                center: latLng,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+        }, (err) => {
+            console.log(err);
+        });
+    }
+
+    addInfoWindow(marker, content){
+
+        let infoWindow = new google.maps.InfoWindow({
+            content: content
+        });
+
+        google.maps.event.addListener(marker, 'click', () => {
+            infoWindow.open(this.map, marker);
+        });
 
     }
 
