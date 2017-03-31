@@ -3,9 +3,11 @@ ion-navbar ion-title button {
     text-align: center;
 }
 
-// .post {
-//
-// }
+.post-add {
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
+}
 
 ion-navbar ion-buttons button ion-icon {
     font-size: 30px;

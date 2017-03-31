@@ -28,4 +28,7 @@ hr {
 
 .home {
     background-color: rgb(255,245,228);
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
 }

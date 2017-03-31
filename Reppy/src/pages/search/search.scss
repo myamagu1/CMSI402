@@ -1,5 +1,7 @@
 page-search {
-
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
 }
 
 ion-navbar ion-buttons button ion-icon {
