@@ -23,8 +23,7 @@ Ionic pages and navigation.
             <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a restaurant/bar"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label stacked>Write a review...</ion-label>
-            <ion-textarea [(ngModel)]="postBody"></ion-textarea>
+            <ion-textarea placeholder="Write a review..." [(ngModel)]="postBody"></ion-textarea>
         </ion-item>
         <button margin primary (click)="addNewPost()">Post</button>
     </ion-list>
