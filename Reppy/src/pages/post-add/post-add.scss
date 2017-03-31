@@ -24,7 +24,7 @@ ion-navbar {
 }
 
 ::-webkit-input-placeholder {
-   font-size: 14px;
+    font-size: 14px;
 }
 
 textarea {
@@ -37,4 +37,14 @@ textarea {
     width: 90%;
     top: 10px;
     left: 20px;
+}
+
+ul.rating li {
+    display: inline;
+    border: 0px;
+    background: none;
+    padding: 5px 10px;
+}
+ul.rating li i {
+    font-size: 30px;
 }

@@ -16,6 +16,6 @@ Ionic pages and navigation.
 <ion-content class="autocomplete">
     <ion-searchbar full [(ngModel)]="autocomplete.query" [showCancelButton]="shouldShowCancel" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
     <ion-list class="restaurantSearch">
-        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)"><h2>{{ item }}</h2></ion-item>
+        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)"><h6>{{ item }}</h6></ion-item>
     </ion-list>
 </ion-content>
