@@ -5,15 +5,17 @@ See http://ionicframework.com/docs/v2/components/#navigation for more info on
 Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-toolbar>
-        <ion-title>Enter address</ion-title>
-        <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
-    </ion-toolbar>
+    <ion-navbar>
+        <ion-title><button ion-button clear><h4 color="secondary">Restaurant/Bar</h4></button></ion-title>
+        <ion-buttons  start>
+            <button ion-button color="secondary" clear (click)="closeSearchPage()"><ion-icon name="close"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
-<ion-content>
-    <ion-list>
-        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
-            {{ item }}
-        </ion-item>
+
+<ion-content class="autocomplete">
+    <ion-searchbar full [(ngModel)]="autocomplete.query" [showCancelButton]="shouldShowCancel" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-list class="restaurantSearch">
+        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)"><h2>{{ item }}</h2></ion-item>
     </ion-list>
 </ion-content>

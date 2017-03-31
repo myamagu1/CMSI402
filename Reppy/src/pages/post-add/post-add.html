@@ -20,13 +20,12 @@ Ionic pages and navigation.
     <div #map id="map"></div>
     <ion-list>
         <ion-item>
-            <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+            <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a restaurant/bar"></ion-input>
         </ion-item>
-        <!-- <ion-item>
+        <ion-item>
             <ion-label stacked>Write a review...</ion-label>
             <ion-textarea [(ngModel)]="postBody"></ion-textarea>
         </ion-item>
-
-        <button margin primary (click)="addNewPost()">Post</button> -->
+        <button margin primary (click)="addNewPost()">Post</button>
     </ion-list>
 </ion-content>

@@ -49,6 +49,10 @@ export class AutocompletePage {
         });
     }
 
+    closeSearchPage() {
+        this.viewCtrl.dismiss();
+    }
+
     ionViewDidLoad() {
         console.log('ionViewDidLoad AutocompletePage');
     }
