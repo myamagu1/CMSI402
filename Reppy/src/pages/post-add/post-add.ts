@@ -5,9 +5,6 @@ import * as firebase from 'firebase';
 import { Geolocation } from 'ionic-native';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 
-// Import ionic2-rating module
-import { Ionic2RatingModule } from 'ionic2-rating';
-
 /*
 Generated class for the PostAddPage page.
 See http://ionicframework.com/docs/v2/components/#navigation for more info on

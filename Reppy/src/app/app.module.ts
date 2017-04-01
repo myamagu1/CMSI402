@@ -12,6 +12,9 @@ import { SearchPage } from '../pages/search/search';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import * as firebase from 'firebase';
 
+// Import ionic2-rating module
+import { Ionic2RatingModule } from 'ionic2-rating';
+
 @NgModule({
     declarations: [
         MyApp,
@@ -26,7 +29,8 @@ import * as firebase from 'firebase';
         AutocompletePage
     ],
     imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        Ionic2RatingModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
