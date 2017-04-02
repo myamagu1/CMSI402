@@ -6,36 +6,69 @@ Ionic pages and navigation.
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title><button ion-button clear><h5 color="secondary">{{ userDislplayName }}</h5></button></ion-title>
+        <ion-title><button ion-button clear><h5 color="secondary">{{ userDisplayName }}</h5></button></ion-title>
         <ion-buttons  end (click)="logUserOut()">
-            <button ion-button color="light"><ion-icon name="log-out"></ion-icon></button>
-            <!-- <i class="fa fa-sign-out" aria-hidden="true"></i> -->
+            <button ion-button color="secondary" clear><ion-icon name="log-out"></ion-icon></button>
+            <button ion-button color="secondary" start clear><ion-icon name="settings"></ion-icon></button>
+            <!-- <button menuToggle>Toggle Menu</button> -->
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 
-<ion-content>
-    <ion-card text-center>
-        <img src="{{userPhotoUrl}}" style="margin: auto; margin-top: 20px;  border-radius: 500px; height:200px; width: 200px; "/>
+<ion-content class="users-detail">
+
+    <ion-card class="profile">
+        <ion-row>
+            <ion-col>
+                <img class="profile-pic" src="{{ userPhoto }}">
+            </ion-col>
+            <ion-col>
+                <button class="followers" ion-button clear>
+                    followers : <b><strong> 100</strong></b>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button class="followers"ion-button clear>
+                    following : <strong> 100</strong>
+                </button>
+            </ion-col>
+        </ion-row>
+        <button class="follow" small ion-button primary block>Follow</button>
     </ion-card>
 
-    <ion-card>
-        <ion-card-header>
-            My details
-        </ion-card-header>
+    <hr>
 
-        <ion-list>
-            <button ion-item>
-                <ion-icon name="list"></ion-icon> 23 years old
-            </button>
-        </ion-list>
-        <ion-list>
-            <button ion-item>
-                <ion-icon name="globe"></ion-icon> Japanese
-            </button>
-        </ion-list>
+    <ion-card *ngFor="let post of userPostsLists">
+
+        <img src="img/pasta.jpg">
+
+        <ion-card-content>
+            <p>{{ post.body }}</p>
+        </ion-card-content>
+
+        <hr>
+
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left outline small>
+                    <ion-icon  color="primary" name="thumbs-up"></ion-icon>
+                    <div>12 Likes</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left outline small>
+                    <ion-icon color="primary" name="text"></ion-icon>
+                    <div>4 Comments</div>
+                </button>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-note>
+                    11h ago
+                </ion-note>
+            </ion-col>
+        </ion-row>
 
     </ion-card>
-    <button ion-button block>Follow</button>
+
 </ion-content>
