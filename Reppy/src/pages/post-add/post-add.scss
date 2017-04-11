@@ -21,6 +21,13 @@ ion-navbar ion-title button {
     height: 35%;
 }
 
+.photo {
+    position: relative;
+    width: 90%;
+    top: 10px;
+    left: 20px;
+}
+
 .post-add {
     background-color: rgb(255,245,228);
     ::-webkit-scrollbar {
@@ -53,7 +60,7 @@ ion-navbar ion-title button {
 .share {
     position: relative;
     width: 90%;
-    top: 10px;
+    top: 15px;
     left: 20px;
 }
 
