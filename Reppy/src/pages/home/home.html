@@ -22,13 +22,14 @@ background: url('img/tomato.jpg') center / cover;
                 <img src="{{userPhoto}}">
             </ion-avatar>
             <h2>{{ userDisplayName }}</h2>
-            <p>2pm today</p>
+            <p>The Courtyard Kitchen</p>
         </ion-item>
 
         <img src="img/eggs-benedict.jpg">
 
         <ion-card-content>
-            <p>{{ post.body }}</p>
+            <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
+            {{ post.body }}
         </ion-card-content>
 
         <hr>
@@ -48,7 +49,7 @@ background: url('img/tomato.jpg') center / cover;
             </ion-col>
             <ion-col center text-center>
                 <ion-note>
-                    11h ago
+                    2pm today
                 </ion-note>
             </ion-col>
         </ion-row>
