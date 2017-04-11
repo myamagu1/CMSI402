@@ -1,12 +1,5 @@
-ion-navbar ion-title button {
-    font-family: Cursive;
-    text-align: center;
-}
-
-ion-navbar ion-buttons button ion-icon {
-    font-size: 30px;
-    position: relative;
-    left: 10px;
+ion-card-content p {
+    font-family: Arial;
 }
 
 ion-col div {
@@ -15,15 +8,15 @@ ion-col div {
     font-weight: bold;
 }
 
-ion-card-content p {
-    font-family: Arial;
+ion-navbar ion-buttons button ion-icon {
+    font-size: 30px;
+    position: relative;
+    left: 10px;
 }
 
-hr {
-    border: 0;
-    height: 0;
-    border-top: 0px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+ion-navbar ion-title button {
+    font-family: Cursive;
+    text-align: center;
 }
 
 .home {
@@ -31,4 +24,11 @@ hr {
     ::-webkit-scrollbar {
         display: none !important;
     }
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }

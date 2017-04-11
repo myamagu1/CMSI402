@@ -1,6 +1,24 @@
+ion-input {
+    font-size: 14px;
+}
+
+ion-navbar {
+    height: 4em;
+}
+
+ion-navbar ion-buttons button ion-icon {
+    font-size: 30px;
+    position: relative;
+}
+
 ion-navbar ion-title button {
     font-family: Cursive;
     text-align: center;
+}
+
+#map {
+    width: 100%;
+    height: 35%;
 }
 
 .post-add {
@@ -10,28 +28,18 @@ ion-navbar ion-title button {
     }
 }
 
-ion-navbar ion-buttons button ion-icon {
-    font-size: 30px;
-    position: relative;
-}
-
-#map {
-    width: 100%;
-    height: 35%;
-}
-
-ion-navbar {
-    height: 4em;
-}
-
-::-webkit-input-placeholder {
-    font-size: 14px;
-}
-
-textarea {
-    width: 100%;
-    height: 27vh;
-    font-size: 14px;
+.rating {
+    height: 2em;
+    background-color: rgb(255,245,228);
+    &.rating li {
+        color: rgb(255, 184, 51);
+        position: relative;
+        top: 5px;
+        left: 53px;
+        ion-icon {
+            font-size: 20px;
+        }
+    }
 }
 
 .review {
@@ -49,20 +57,12 @@ textarea {
     left: 20px;
 }
 
-ion-input {
+textarea {
+    width: 100%;
+    height: 27vh;
     font-size: 14px;
 }
 
-.rating {
-    height: 2em;
-    background-color: rgb(255,245,228);
-    &.rating li {
-        color: rgb(255, 184, 51);
-        position: relative;
-        top: 5px;
-        left: 53px;
-        ion-icon {
-            font-size: 20px;
-        }
-    }
+::-webkit-input-placeholder {
+    font-size: 14px;
 }
