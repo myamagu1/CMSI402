@@ -1,13 +1,5 @@
-.follow {
-    color: black;
-    font-family: Cursive;
+.center {
     text-align: center;
-    color: #fff;
-    height: 30%;
-    width: 200px;
-    position: relative;
-    left: 100px;
-    top: -35px;
 }
 
 .followers {
@@ -15,9 +7,13 @@
     font-family: Helvetica;
     font-size: 15px;
     font-weight: bold;
-    position: relative;
-    top: -5px;
-    padding: 0px 1px 0px 1px;
+}
+
+.following {
+    color: black;
+    font-family: Helvetica;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 ion-navbar ion-buttons button ion-icon {
@@ -37,10 +33,14 @@ page-users-detail {
 }
 
 .profile-pic {
-    border-radius: 8px;
-    padding: 2px -10px 1px 0px;
-    height: 65px;
-    width: 65px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: rgb(255, 184, 51);
+    border-width: 1px;
+    height: 70px;
+    width: 70px;
 }
 
 .users-detail {
