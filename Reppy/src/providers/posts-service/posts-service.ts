@@ -26,7 +26,7 @@ export class PostsService {
     }
 
     //view a certain Post
-    viewPostService(postId:any){
+    viewPostService(postId: any){
         var userRef = this.postsNode.child(postId);
         return userRef.once('value');
     }
@@ -34,7 +34,7 @@ export class PostsService {
     //view all posts made by this userId
     viewUsersPostsService(userId: any){
         var userRef = this.usersPostsNode.child(userId);
-        return userRef.on('value');
+        return userRef.once('value');
     }
 
     listPostService(){
