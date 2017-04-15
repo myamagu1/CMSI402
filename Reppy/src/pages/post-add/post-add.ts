@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, ViewController,LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
-import { Geolocation } from 'ionic-native';
+import { Geolocation, Camera } from 'ionic-native';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 
 /*
@@ -27,7 +27,7 @@ export class PostAddPage {
     private postTitle :any;
     private postBody :any;
     private userId :any;
-
+    private imageSrc: string;
 
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController ) {
         //user id of current logged in user
@@ -95,45 +95,66 @@ export class PostAddPage {
     //
     // }
 
-    addNewPost(){
-
-        //add preloader
-        let loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
-            content: 'Reseting your password..'
-        });
-        loading.present();
-
-        //call the service
-        this.postsService.createPostService(this.userId, this.postBody).then(() => {
-
-            //clear the fields
-            this.postBody = "";
-
-            //add toast
-            loading.dismiss().then(() => {
-                //show pop up
-                let alert = this.alertCtrl.create({
-                    title: 'Done!',
-                    subTitle: 'Post successful',
-                    buttons: ['OK']
-                });
-                alert.present();
-            })
-
-            //close the popup
-            this.viewCtrl.dismiss();
-
-        }, error => {
-            //show pop up
-            loading.dismiss().then(() => {
-                let alert = this.alertCtrl.create({
-                    title: 'Error adding new post',
-                    subTitle: error.message,
-                    buttons: ['OK']
-                });
-                alert.present();
-            })
-        });
+    doGetPicture() {
+        alert("Add a picture");
     }
-}
+
+    openGallery() {
+        let cameraOptions = {
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            destinationType: Camera.DestinationType.FILE_URI,
+            quality: 100,
+            targetWidth: 1000,
+            targetHeight: 1000,
+            encodingType: Camera.EncodingType.JPEG,
+            correctOrientation: true
+        }
+
+        Camera.getPicture(cameraOptions)
+        .then(file_uri => this.imageSrc = file_uri,
+            err => console.log(err));
+    }
+
+        addNewPost() {
+
+            //add preloader
+            let loading = this.loadingCtrl.create({
+                dismissOnPageChange: true,
+                content: 'Reseting your password..'
+            });
+            loading.present();
+
+            //call the service
+            this.postsService.createPostService(this.userId, this.postBody, this.imageSrc).then(() => {
+
+                //clear the fields
+                this.postBody = "";
+                this.imageSrc = "";
+
+                //add toast
+                loading.dismiss().then(() => {
+                    //show pop up
+                    let alert = this.alertCtrl.create({
+                        title: 'Done!',
+                        subTitle: 'Post successful',
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                })
+
+                //close the popup
+                this.viewCtrl.dismiss();
+
+            }, error => {
+                //show pop up
+                loading.dismiss().then(() => {
+                    let alert = this.alertCtrl.create({
+                        title: 'Error adding new post',
+                        subTitle: error.message,
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                })
+            });
+        }
+    }

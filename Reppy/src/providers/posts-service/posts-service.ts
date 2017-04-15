@@ -41,11 +41,12 @@ export class PostsService {
         return this.postsNode.once('value');
     }
 
-    createPostService(userId: any, postBody: any){
+    createPostService(userId: any, postBody: any, imageSrc: string){
         // A post entry.
         var postData = {
             uid: userId,
-            body: postBody
+            body: postBody,
+            img: imageSrc
         };
 
         // Get a key for a new Post.
