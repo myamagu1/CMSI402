@@ -25,7 +25,7 @@ background: url('img/tomato.jpg') center / cover;
             <p>The Courtyard Kitchen</p>
         </ion-item>
 
-        <img src="img/eggs-benedict.jpg">
+        <img src="{{ post.img }}">
 
         <ion-card-content>
             <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>

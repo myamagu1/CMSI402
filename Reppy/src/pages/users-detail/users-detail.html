@@ -41,7 +41,7 @@ Ionic pages and navigation.
 
     <ion-card *ngFor="let post of userPostsLists">
 
-        <img src="img/eggs-benedict.jpg">
+        <img src="{{ post.img }}">
 
         <ion-card-content>
             <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>

@@ -102,13 +102,29 @@ export class PostAddPage {
     openGallery() {
         let cameraOptions = {
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: Camera.DestinationType.FILE_URI,
+            destinationType: Camera.DestinationType.NATIVE_URI,
             quality: 100,
             targetWidth: 1000,
             targetHeight: 1000,
             encodingType: Camera.EncodingType.JPEG,
             correctOrientation: true
         }
+
+        let loading = this.loadingCtrl.create({
+            dismissOnPageChange: true,
+            content: 'adding a photo...'
+        });
+        loading.present();
+
+        loading.dismiss().then(() => {
+            //show pop up
+            let alert = this.alertCtrl.create({
+                title: 'Done!',
+                subTitle: 'successful',
+                buttons: ['OK']
+            });
+            alert.present();
+        })
 
         Camera.getPicture(cameraOptions)
         .then(file_uri => this.imageSrc = file_uri,
@@ -120,7 +136,7 @@ export class PostAddPage {
             //add preloader
             let loading = this.loadingCtrl.create({
                 dismissOnPageChange: true,
-                content: 'Reseting your password..'
+                content: 'adding a new post...'
             });
             loading.present();
 
