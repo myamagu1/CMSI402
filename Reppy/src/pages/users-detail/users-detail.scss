@@ -3,16 +3,16 @@
 }
 
 .followers {
-    color: black;
+    color: #fff;
     font-family: Helvetica;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .following {
-    color: black;
+    color: #fff;
     font-family: Helvetica;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -28,19 +28,15 @@ page-users-detail {
     }
 }
 
-.profile {
-    height: 75px;
-}
-
 .profile-pic {
     margin: auto;
     margin-top: 20px;
     border-radius: 100px;
     border-style: solid;
     border-color: rgb(255, 184, 51);
-    border-width: 1px;
-    height: 70px;
-    width: 70px;
+    border-width: 3px;
+    height: 85px;
+    width: 85px;
 }
 
 .users-detail {
