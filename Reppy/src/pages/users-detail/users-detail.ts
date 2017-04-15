@@ -39,7 +39,7 @@ export class UsersDetailPage {
         this.listPosts();
     }
 
-    displayUser(theUserId){
+    displayUser(theUserId) {
 
         var that = this;
 
@@ -58,7 +58,7 @@ export class UsersDetailPage {
         });
     }
 
-    listPosts(){
+    listPosts() {
         var that = this;
         this.postsService.listPostService().then(snapshot => {
             //empty this array first to avoid duplication of content when value changes in the database
