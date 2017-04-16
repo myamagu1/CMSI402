@@ -27,7 +27,8 @@ export class PostAddPage {
     private postTitle :any;
     private postBody :any;
     private userId :any;
-    private imageSrc: string;
+
+    private imageSrc: any;
 
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController ) {
         //user id of current logged in user
@@ -131,46 +132,46 @@ export class PostAddPage {
             err => console.log(err));
     }
 
-        addNewPost() {
+    addNewPost() {
 
-            //add preloader
-            let loading = this.loadingCtrl.create({
-                dismissOnPageChange: true,
-                content: 'adding a new post...'
-            });
-            loading.present();
+        //add preloader
+        let loading = this.loadingCtrl.create({
+            dismissOnPageChange: true,
+            content: 'adding a new post...'
+        });
+        loading.present();
 
-            //call the service
-            this.postsService.createPostService(this.userId, this.postBody, this.imageSrc).then(() => {
+        //call the service
+        this.postsService.createPostService(this.userId, this.postBody, this.imageSrc).then(() => {
 
-                //clear the fields
-                this.postBody = "";
-                this.imageSrc = "";
+            //clear the fields
+            this.postBody = "";
+            this.imageSrc = "";
 
-                //add toast
-                loading.dismiss().then(() => {
-                    //show pop up
-                    let alert = this.alertCtrl.create({
-                        title: 'Done!',
-                        subTitle: 'Post successful',
-                        buttons: ['OK']
-                    });
-                    alert.present();
-                })
-
-                //close the popup
-                this.viewCtrl.dismiss();
-
-            }, error => {
+            //add toast
+            loading.dismiss().then(() => {
                 //show pop up
-                loading.dismiss().then(() => {
-                    let alert = this.alertCtrl.create({
-                        title: 'Error adding new post',
-                        subTitle: error.message,
-                        buttons: ['OK']
-                    });
-                    alert.present();
-                })
-            });
-        }
+                let alert = this.alertCtrl.create({
+                    title: 'Done!',
+                    subTitle: 'Post successful',
+                    buttons: ['OK']
+                });
+                alert.present();
+            })
+
+            //close the popup
+            this.viewCtrl.dismiss();
+
+        }, error => {
+            //show pop up
+            loading.dismiss().then(() => {
+                let alert = this.alertCtrl.create({
+                    title: 'Error adding new post',
+                    subTitle: error.message,
+                    buttons: ['OK']
+                });
+                alert.present();
+            })
+        });
     }
+}
