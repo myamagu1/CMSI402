@@ -41,6 +41,10 @@ Ionic pages and navigation.
 
     <ion-card *ngFor="let post of userPostsLists">
 
+        <ion-item>
+            <p>{{ post.address }}</p>
+        </ion-item>
+
         <img src="{{ post.img }}">
 
         <ion-card-content>

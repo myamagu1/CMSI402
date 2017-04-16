@@ -17,7 +17,7 @@ Ionic pages and navigation.
     <div #map id="map"></div>
     <ion-list>
         <ion-item class="search" >
-            <ion-input placeholder="Pick a restaurant/bar" [(ngModel)]="address.place" type="text" (click)="showAddressModal()"></ion-input>
+            <ion-input placeholder="Pick a restaurant/bar" [(ngModel)]="address" type="text" (click)="showAddressModal()"></ion-input>
         </ion-item>
         <ion-item class="rating">
             <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>

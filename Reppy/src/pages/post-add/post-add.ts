@@ -33,16 +33,14 @@ export class PostAddPage {
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController ) {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
-        this.address = {
-            place: ''
-        };
+        this.address = '';
     }
 
     showAddressModal () {
         let modal = this.modalCtrl.create(AutocompletePage);
         let me = this;
         modal.onDidDismiss(data => {
-            this.address.place = data;
+            this.address = data;
         });
         modal.present();
     }
@@ -103,7 +101,7 @@ export class PostAddPage {
     openGallery() {
         let cameraOptions = {
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: Camera.DestinationType.NATIVE_URI,
+            destinationType: Camera.DestinationType.FILE_URI,
             quality: 100,
             targetWidth: 1000,
             targetHeight: 1000,
@@ -142,11 +140,12 @@ export class PostAddPage {
         loading.present();
 
         //call the service
-        this.postsService.createPostService(this.userId, this.postBody, this.imageSrc).then(() => {
+        this.postsService.createPostService(this.userId, this.postBody, this.imageSrc, this.address).then(() => {
 
             //clear the fields
             this.postBody = "";
             this.imageSrc = "";
+            this.address = "";
 
             //add toast
             loading.dismiss().then(() => {
