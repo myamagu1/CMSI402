@@ -22,7 +22,7 @@ Ionic pages and navigation.
             <ion-avatar item-left>
                 <img src="{{ user.photo }}">
             </ion-avatar>
-            <h2>{{ user.username }}</h2>
+            <button ion-button clear (click)="redirectToUsersDetailPage()"><h2>{{ user.username }}</h2></button>
         </ion-item>
     </ion-list>
 </ion-content>

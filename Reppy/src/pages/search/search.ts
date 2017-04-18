@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ViewController } from 'ionic-angular';
+import { UsersDetailPage } from '../users-detail/users-detail';
 import * as firebase from 'firebase';
 
 /*
@@ -58,6 +59,12 @@ export class SearchPage {
 
     closeSearchPage() {
         this.viewCtrl.dismiss();
+    }
+
+    redirectToUsersDetailPage() {
+
+        //redirect here
+        this.navCtrl.push(UsersDetailPage);
     }
 
     ionViewDidLoad() {
