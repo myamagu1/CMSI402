@@ -53,7 +53,7 @@ export class UsersDetailPage {
     logUserOut() {
         //   this.userService.logoutUser();
         this.usersService.logoutUser().then(() => {
-            this.navCtrl.setRoot(LoginPage);
+            window.location.reload();
         });
     }
 
