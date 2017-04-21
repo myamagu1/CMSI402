@@ -11,7 +11,7 @@ for more info on providers and Angular 2 DI.
 @Injectable()
 export class PostsService {
 
-    private data: any;
+    // private data: any;
     private userNode: any;
     private fireRef: any;
     private postsNode: any;

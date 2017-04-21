@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
-import { LoginPage } from '../login/login';
+// import { LoginPage } from '../login/login';
 import * as firebase from 'firebase';
 
 
@@ -17,18 +17,18 @@ Ionic pages and navigation.
     templateUrl: 'users-detail.html',
     providers: [UsersService, PostsService]
 })
-export class UsersDetailPage {
+export class UsersDetailPage implements OnInit {
 
     private userPostsLists= [];
     private userProfileLists: any;
     private userDisplayName: any;
     private userEmail: any;
     private userPhoto: any;
-    private userId: any;
+    // private userId: any;
 
     private userPhotoUrl: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService, private postsService: PostsService ) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService, private postsService: PostsService, private zone: NgZone) {
         //current user id
         var myUserId = firebase.auth().currentUser.uid;
         this.displayUser(myUserId);
@@ -36,18 +36,25 @@ export class UsersDetailPage {
         this.userProfileLists = firebase.database().ref('users');
         //get list of posts on page init
         this.listPost(myUserId);
+
+        console.log('Constructor finished');
+    }
+
+    ngOnInit() {
+        console.log('Init called');
     }
 
     displayUser(theUserId) {
-
-        var that = this;
-
         this.usersService.viewUser(theUserId).then(snapshot => {
 
             //get user photo
-            that.userPhotoUrl = snapshot.val().photo; //get user photo
-            that.userDisplayName= snapshot.val().username;
-        })
+            this.zone.run(() => {
+                this.userPhotoUrl = snapshot.val().photo; //get user photo
+                this.userDisplayName= snapshot.val().username;
+            });
+        });
+
+        console.log('displayUser called');
     }
 
     logUserOut() {
@@ -58,32 +65,37 @@ export class UsersDetailPage {
     }
 
     listPost(theUserId) {
-        var that = this;
         this.postsService.viewUsersPostsService(theUserId).then(snapshot => {
             //empty this array first to avoid duplication of content when value changes in the database
             //so every time there is a change in the database, empty the array, fetch fresh data from db
             //this is because we are fetching data with on('value') inside listPostService()
 
-            that.userPostsLists.length = 0;
+            this.userPostsLists.length = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                var data = childSnapshot.val();
-                data['key'] = childSnapshot.key;
-                that.userPostsLists.push(data);
+            snapshot.forEach(childSnapshot => {
+                
+                this.zone.run(() => {
+                    var data = childSnapshot.val();
+                    data['key'] = childSnapshot.key;
+                    this.userPostsLists.push(data);
+                });
 
-
-                console.log("post details: "+that.userPostsLists);
+                console.log("post details: "+this.userPostsLists);
                 //get the user's detail
-                that.usersService.viewUser(theUserId).then(snapshotUser=> {
-                    that.userDisplayName = snapshotUser.val().username;
-                    that.userEmail = snapshotUser.val().email;
-                    that.userPhoto = snapshotUser.val().photo;
+                this.usersService.viewUser(theUserId).then(snapshotUser=> {
+                    this.zone.run(() => {
+                        this.userDisplayName = snapshotUser.val().username;
+                        this.userEmail = snapshotUser.val().email;
+                        this.userPhoto = snapshotUser.val().photo;
+                    });
 
                     //check the console section of your browser inspect element
                     console.log( "user details: "+ snapshotUser.val() );
                 })
             });
         });
+
+        console.log('listPost finished');
     }
 
     ionViewDidLoad() {

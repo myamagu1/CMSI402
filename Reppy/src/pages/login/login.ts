@@ -22,7 +22,7 @@ export class LoginPage {
 
     public emailField: any;
     public passwordField: any;
-    private users = [];
+    // private users = [];
     private usersList : any;
 
 

@@ -2,7 +2,8 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, ViewController,LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
-import { Geolocation, Camera } from 'ionic-native';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 
 /*
@@ -24,7 +25,7 @@ export class PostAddPage {
     @ViewChild('map') mapElement: ElementRef;
     private map: any;
     private address: any;
-    private postTitle :any;
+    // private postTitle :any;
     private postBody :any;
     private userId :any;
 
@@ -38,7 +39,7 @@ export class PostAddPage {
 
     showAddressModal () {
         let modal = this.modalCtrl.create(AutocompletePage);
-        let me = this;
+        // let me = this;
         modal.onDidDismiss(data => {
             this.address = data;
         });
@@ -50,8 +51,9 @@ export class PostAddPage {
     }
 
     loadMap() {
+        let geolocation = new Geolocation();
 
-        Geolocation.getCurrentPosition().then((position) => {
+        geolocation.getCurrentPosition().then((position) => {
 
             let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -99,13 +101,14 @@ export class PostAddPage {
     }
 
     openGallery() {
-        let cameraOptions = {
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: Camera.DestinationType.FILE_URI,
+        let camera = new Camera();
+        let cameraOptions: CameraOptions = {
+            sourceType: camera.PictureSourceType.PHOTOLIBRARY,
+            destinationType: camera.DestinationType.FILE_URI,
             quality: 100,
             targetWidth: 1000,
             targetHeight: 1000,
-            encodingType: Camera.EncodingType.JPEG,
+            encodingType: camera.EncodingType.JPEG,
             correctOrientation: true
         }
 
@@ -125,8 +128,7 @@ export class PostAddPage {
             alert.present();
         })
 
-        Camera.getPicture(cameraOptions)
-        .then(file_uri => this.imageSrc = file_uri,
+        camera.getPicture(cameraOptions).then(file_uri => this.imageSrc = file_uri,
             err => console.log(err));
     }
 
