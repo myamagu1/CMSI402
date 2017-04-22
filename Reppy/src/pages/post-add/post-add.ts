@@ -104,7 +104,7 @@ export class PostAddPage {
         let camera = new Camera();
         let cameraOptions: CameraOptions = {
             sourceType: camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: camera.DestinationType.FILE_URI,
+            destinationType: camera.DestinationType.NATIVE_URI,
             quality: 100,
             targetWidth: 1000,
             targetHeight: 1000,
