@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
@@ -11,7 +11,7 @@ import * as firebase from 'firebase';
     providers: [PostsService, UsersService]
 })
 
-export class HomePage {
+export class HomePage implements OnInit {
 
     private userPostsLists= [];
     private userProfileLists: any;
@@ -20,12 +20,16 @@ export class HomePage {
     private userPhoto: any;
     private userId: any;
 
-    constructor(public navCtrl: NavController, private postsService: PostsService, private usersService: UsersService) {
+    constructor(public navCtrl: NavController, private postsService: PostsService, private usersService: UsersService,  private zone: NgZone) {
 
         this.userProfileLists = firebase.database().ref('users');
         this.userId = firebase.auth().currentUser.uid;
         //get list of posts on page init
         this.listPosts();
+    }
+
+        ngOnInit() {
+        console.log('Init called');
     }
 
     redirectToSearchPage(){
@@ -40,26 +44,29 @@ export class HomePage {
     // }
 
     listPosts(){
-        var that = this;
         this.postsService.listPostService().then(snapshot => {
             //empty this array first to avoid duplication of content when value changes in the database
             //so every time there is a change in the database, empty the array, fetch fresh data from db
             //this is because we are fetching data with on('value') inside listPostService()
 
-            that.userPostsLists.length = 0;
+            this.userPostsLists.length = 0;
 
-            snapshot.forEach(function (childSnapshot) {
-                var data = childSnapshot.val();
-                data['key'] = childSnapshot.key;
-                that.userPostsLists.push(data);
+            snapshot.forEach(childSnapshot => {
+                
+                this.zone.run(() => {
+                    var data = childSnapshot.val();
+                    data['key'] = childSnapshot.key;
+                    this.userPostsLists.push(data);
+                });
 
-
-                console.log("post details: "+that.userPostsLists);
+                console.log("post details: "+this.userPostsLists);
                 //get the user's detail
-                that.usersService.viewUser(that.userId).then(snapshotUser=> {
-                    that.userDisplayName = snapshotUser.val().username;
-                    that.userEmail = snapshotUser.val().email;
-                    that.userPhoto = snapshotUser.val().photo;
+                this.usersService.viewUser(this.userId).then(snapshotUser=> {
+                    this.zone.run(() => {
+                        this.userDisplayName = snapshotUser.val().username;
+                        this.userEmail = snapshotUser.val().email;
+                        this.userPhoto = snapshotUser.val().photo;
+                    });
 
                     //check the console section of your browser inspect element
                     console.log( "user details: "+ snapshotUser.val() );
