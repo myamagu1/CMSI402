@@ -26,9 +26,8 @@ export class PostAddPage {
     private map: any;
     private address: any;
     // private postTitle :any;
-    private postBody :any;
-    private userId :any;
-
+    private postBody : any;
+    private userId : any;
     private imageSrc: any;
 
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController ) {

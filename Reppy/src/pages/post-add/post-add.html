@@ -16,8 +16,8 @@ Ionic pages and navigation.
 <ion-content class="post-add">
     <div #map id="map"></div>
     <ion-list>
-        <ion-item class="search" >
-            <ion-input placeholder="Pick a restaurant/bar" [(ngModel)]="address" type="text" (click)="showAddressModal()"></ion-input>
+        <ion-item class="search" (click)="showAddressModal()">
+            <ion-input placeholder="Pick a restaurant/bar" [(ngModel)]="address" type="text"></ion-input>
         </ion-item>
         <ion-item class="rating">
             <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
@@ -27,7 +27,7 @@ Ionic pages and navigation.
         </ion-item>
         <div>
             <!-- image will load once picked -->
-            <!-- <img [src]="imageSrc" /> -->
+             <!--<img [src]="imageSrc" /> -->
             <button class="photo" small ion-button outline primary block (click)="openGallery()">Add a photo</button>
         </div>
         <button class="share" small ion-button outline primary block (click)="addNewPost()">Share</button>
