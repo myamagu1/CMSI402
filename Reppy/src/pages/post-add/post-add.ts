@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef  } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NavController, ViewController,LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
@@ -14,7 +14,7 @@ declare var google;
     providers: [PostsService]
 })
 
-export class PostAddPage {
+export class PostAddPage implements OnInit {
 
     @ViewChild('map') mapElement: ElementRef;
     private map: any;
@@ -28,6 +28,10 @@ export class PostAddPage {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
         this.address = '';
+    }
+
+    ngOnInit() {
+        console.log('Init called');
     }
 
     showAddressModal () {

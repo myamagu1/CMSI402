@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, ViewController } from 'ionic-angular';
 import { UsersDetailPage } from '../users-detail/users-detail';
 import * as firebase from 'firebase';
@@ -13,7 +13,7 @@ Ionic pages and navigation.
     selector: 'page-search',
     templateUrl: 'search.html'
 })
-export class SearchPage {
+export class SearchPage implements OnInit {
 
     userRef: any;
     userList: any;
@@ -31,6 +31,10 @@ export class SearchPage {
             this.userList = users;
             this.loadedUserList = users;
         });
+    }
+
+    ngOnInit() {
+        console.log('Init called');
     }
 
     initializeItems(): void {

@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 /*
@@ -13,7 +13,7 @@ declare var google;
     selector: 'page-autocomplete',
     templateUrl: 'autocomplete.html'
 })
-export class AutocompletePage {
+export class AutocompletePage implements OnInit {
     private autocompleteItems: any;
     private autocomplete: any;
     service = new google.maps.places.AutocompleteService();
@@ -23,6 +23,10 @@ export class AutocompletePage {
         this.autocomplete = {
             query: ''
         };
+    }
+        
+    ngOnInit() {
+        console.log('Init called');
     }
 
     dismiss() {

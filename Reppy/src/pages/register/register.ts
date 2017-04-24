@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 
@@ -12,10 +12,14 @@ Ionic pages and navigation.
     selector: 'page-register',
     templateUrl: 'register.html'
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit {
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
+    }
+
+    ngOnInit() {
+        console.log('Init called');
     }
 
     closeRegisterPage() {

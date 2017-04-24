@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
 // import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
@@ -18,7 +18,7 @@ Ionic pages and navigation.
     templateUrl: 'login.html',
     providers: [UsersService]
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
 
     public emailField: any;
     public passwordField: any;
@@ -33,6 +33,10 @@ export class LoginPage {
         this.listOurUsers();
     }
 
+    ngOnInit() {
+        console.log('Init called');
+    }
+    
     signUserUp() {
         this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
             // Successful
