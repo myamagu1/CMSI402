@@ -6,12 +6,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 
-/*
-Generated class for the PostAddPage page.
-See http://ionicframework.com/docs/v2/components/#navigation for more info on
-Ionic pages and navigation.
-*/
-
 declare var google;
 
 @Component({
@@ -38,7 +32,6 @@ export class PostAddPage {
 
     showAddressModal () {
         let modal = this.modalCtrl.create(AutocompletePage);
-        // let me = this;
         modal.onDidDismiss(data => {
             this.address = data;
         });
@@ -67,36 +60,6 @@ export class PostAddPage {
         }, (err) => {
             console.log(err);
         });
-    }
-
-    // addMarker() {
-    //
-    //     let marker = new google.maps.Marker({
-    //         map: this.map,
-    //         animation: google.maps.Animation.DROP,
-    //         position: this.map.getCenter()
-    //     });
-    //
-    //     let content = "<h4>Information!</h4>";
-    //
-    //     this.addInfoWindow(marker, content);
-    //
-    // }
-    //
-    // addInfoWindow(marker, content) {
-    //
-    //     let infoWindow = new google.maps.InfoWindow({
-    //         content: content
-    //     });
-    //
-    //     google.maps.event.addListener(marker, 'click', () => {
-    //         infoWindow.open(this.map, marker);
-    //     });
-    //
-    // }
-
-    doGetPicture() {
-        alert("Add a picture");
     }
 
     openGallery() {
@@ -175,3 +138,30 @@ export class PostAddPage {
         });
     }
 }
+
+
+    // addMarker() {
+    //
+    //     let marker = new google.maps.Marker({
+    //         map: this.map,
+    //         animation: google.maps.Animation.DROP,
+    //         position: this.map.getCenter()
+    //     });
+    //
+    //     let content = "<h4>Information!</h4>";
+    //
+    //     this.addInfoWindow(marker, content);
+    //
+    // }
+    //
+    // addInfoWindow(marker, content) {
+    //
+    //     let infoWindow = new google.maps.InfoWindow({
+    //         content: content
+    //     });
+    //
+    //     google.maps.event.addListener(marker, 'click', () => {
+    //         infoWindow.open(this.map, marker);
+    //     });
+    //
+    // }
