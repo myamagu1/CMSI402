@@ -129,7 +129,6 @@ export class PostAddPage implements OnInit {
             //show pop up
             this.zone.run(() => {
                 this.loading.dismiss().then(() => {
-                    ;
                     let alert = this.alertCtrl.create({
                         title: 'Error adding new post',
                         subTitle: error.message,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController, Loading } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     public passwordField: any;
     private loading: Loading;
 
-    constructor(private alertCtrl: AlertController, private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController) {
+    constructor(private alertCtrl: AlertController, private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController, private zone: NgZone) {
         //   this.emailField = "mondo@gmail.com";
         this.emailField = "";
         this.passwordField = "";
@@ -41,10 +41,22 @@ export class LoginPage implements OnInit {
         this.loading.present().then(() => {
             this.usersService.signUpUser(this.emailField, this.passwordField);
         }).then(() => {
-            // Successful
-            this.navCtrl.setRoot(HomePage);
+            this.zone.run(() => {
+                // Successful
+                this.navCtrl.setRoot(HomePage);
+            });
         }, error => {
-            //   alert("error logging in: " + error.message);
+            // alert error message
+            this.zone.run(() => {
+                this.loading.dismiss().then(() => {
+                    let alert = this.alertCtrl.create({
+                        title: 'Error loggin in',
+                        subTitle: error.message,
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                });
+            });
         });
     }
 
@@ -58,16 +70,22 @@ export class LoginPage implements OnInit {
         this.loading.present().then(() => {
             this.usersService.loginUser(this.emailField, this.passwordField);
         }).then(() => {
-            // Successful
-            this.navCtrl.setRoot(TabsPage);
-        }, error => {
-            // alert("error logging in: "+ error.message);
-            let alert = this.alertCtrl.create({
-                title: 'Error loggin in',
-                subTitle: error.message,
-                buttons: ['OK']
+            this.zone.run(() => {
+                // Successful
+                this.navCtrl.setRoot(TabsPage);
             });
-            alert.present();
+        }, error => {
+            // alert error message
+            this.zone.run(() => {
+                this.loading.dismiss().then(() => {
+                    let alert = this.alertCtrl.create({
+                        title: 'Error loggin in',
+                        subTitle: error.message,
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                });
+            });
         });
     }
 
