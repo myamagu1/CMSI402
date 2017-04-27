@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
             content: 'Loading...'
         });
         this.loading.present().then(() => {
-            this.usersService.signUpUser(this.emailField, this.passwordField);
+            return this.usersService.signUpUser(this.emailField, this.passwordField);
         }).then(() => {
             this.zone.run(() => {
                 // Successful
@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
             content: 'Loading...'
         });
         this.loading.present().then(() => {
-            this.usersService.loginUser(this.emailField, this.passwordField);
+            return this.usersService.loginUser(this.emailField, this.passwordField);
         }).then(() => {
             this.zone.run(() => {
                 // Successful

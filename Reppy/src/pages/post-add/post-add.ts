@@ -82,7 +82,7 @@ export class PostAddPage implements OnInit {
 
             let loading = this.loadingCtrl.create({
                 dismissOnPageChange: true,
-                content: 'adding a photo...'
+                content: 'Loading...'
             });
             loading.present();
 
@@ -99,7 +99,7 @@ export class PostAddPage implements OnInit {
             camera.getPicture(cameraOptions).then(file_uri => this.imageSrc = file_uri,
                 err => console.log(err));
         } else {
-            alert("You're in browser!!!");
+            alert("You can't open a photo library in a browser!!!");
         }
     }
 
@@ -109,7 +109,7 @@ export class PostAddPage implements OnInit {
             dismissOnPageChange: true,
             content: 'adding a new post...'
         });
-        
+
         this.loading.present().then(() => {
             //call the service
             return this.postsService.createPost(this.userId, this.postBody, this.imageSrc, this.address);
