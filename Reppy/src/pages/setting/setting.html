@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar hideBackButton>
-    <ion-title><button ion-button clear color="secondary"><h5>Options</h5></button></ion-title>
+    <ion-title><button ion-button clear color="secondary"><h5>Setting</h5></button></ion-title>
     <ion-buttons start>
       <button ion-button color="secondary" clear (click)="closeSetting()"><ion-icon name="backspace"></ion-icon></button>
     </ion-buttons>
@@ -18,4 +18,14 @@
 
 <ion-content class="setting">
 
+  <div class="center">
+    <img class="profile-pic" src="{{ userPhoto }}">
+  </div>
+
+  <p class="edit">Edit Profile</p>
+  <button class="logout" small ion-button outline primary block (click)="logUserOut()">Add/Change Profile Photo</button>
+  <button class="logout" small ion-button outline primary block (click)="logUserOut()">Change Username</button>
+  <button class="logout" small ion-button outline primary block (click)="logUserOut()">Change Email</button>
+  <br>
+  <button class="logout" small ion-button outline primary block (click)="logUserOut()">Log Out</button>
 </ion-content>

@@ -10,7 +10,7 @@ Ionic pages and navigation.
         <!-- <ion-buttons end>
         <button ion-button color="secondary" (click)="addMarker()"><ion-icon name="pin"></ion-icon></button>
     </ion-buttons> -->
-</ion-navbar>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="post-add">
@@ -20,16 +20,13 @@ Ionic pages and navigation.
             <ion-input placeholder="Pick a restaurant/bar" [(ngModel)]="address" type="text"></ion-input>
         </ion-item>
         <ion-item class="rating">
-            <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
+            <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+                nullable="false"></rating>
         </ion-item>
-        <ion-item class="review" >
+        <ion-item class="review">
             <ion-textarea placeholder="Write a review..." [(ngModel)]="postBody"></ion-textarea>
         </ion-item>
-        <div>
-            <!-- image will load once picked -->
-             <!--<img [src]="imageSrc" /> -->
-            <button class="photo" small ion-button outline primary block (click)="openGallery()">Add a photo</button>
-        </div>
+        <button class="photo" small ion-button outline primary block (click)="openGallery()">Add a photo</button>
         <button class="share" small ion-button outline primary block (click)="addNewPost()">Share</button>
     </ion-list>
 </ion-content>

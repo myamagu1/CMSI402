@@ -24,7 +24,6 @@ export class UsersDetailPage implements OnInit {
     private userDisplayName: any;
     private userEmail: any;
     private userPhoto: any;
-    // private userId: any;
     private userPhotoUrl: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService, private postsService: PostsService, private zone: NgZone) {
