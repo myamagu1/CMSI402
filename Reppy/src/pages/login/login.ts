@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController, Loading } from 'ionic-angular';
 // import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
@@ -22,11 +22,11 @@ export class LoginPage implements OnInit {
 
     public emailField: any;
     public passwordField: any;
-    // private users = [];
-    private usersList : any;
+    private loading: Loading;
+    private usersList: any;
 
 
-    constructor(private alertCtrl: AlertController , private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController) {
+    constructor(private alertCtrl: AlertController, private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController) {
         //   this.emailField = "mondo@gmail.com";
         this.emailField = "";
         this.passwordField = "";
@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
     ngOnInit() {
         console.log('Init called');
     }
-    
+
     signUserUp() {
         this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
             // Successful
@@ -46,23 +46,29 @@ export class LoginPage implements OnInit {
             //   alert("error logging in: " + error.message);
         });
 
-        let loader = this.loadingCtrl.create({
+        this.loading = this.loadingCtrl.create({
             dismissOnPageChange: true,
         });
-        loader.present();
+        this.loading.present();
     }
 
     listOurUsers() {
         this.usersService.loadUser(10)
-        .then(data => {
-            this.usersList = data;
-        })
+            .then(data => {
+                this.usersList = data;
+            })
     }
 
     // Login
     submitLogin() {
-        //   alert(this.passwordField);
-        this.usersService.loginUser(this.emailField, this.passwordField).then(authData => {
+        //add preloader
+        this.loading = this.loadingCtrl.create({
+            dismissOnPageChange: true,
+            content: 'Loading...'
+        });
+        this.loading.present().then(() => {
+            this.usersService.loginUser(this.emailField, this.passwordField);
+        }).then(() => {
             // Successful
             this.navCtrl.setRoot(TabsPage);
         }, error => {
@@ -74,17 +80,7 @@ export class LoginPage implements OnInit {
             });
             alert.present();
         });
-        let loader = this.loadingCtrl.create({
-            dismissOnPageChange: true,
-        });
-        loader.present();
     }
-
-    // submitRegister() {
-    //     alert("Registered!");
-        //   let registerModal = this.ModalCtrl.create(RegisterPage);
-        //   registerModal.present();
-    // }
 
     showForgotPassword() {
         let prompt = this.alertCtrl.create({

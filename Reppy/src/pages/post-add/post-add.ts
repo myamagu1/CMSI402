@@ -20,7 +20,6 @@ export class PostAddPage implements OnInit {
     @ViewChild('map') mapElement: ElementRef;
     private map: any;
     private address: any;
-    // private postTitle :any;
     private postBody: any;
     private userId: any;
     private imageSrc: any;
@@ -110,6 +109,7 @@ export class PostAddPage implements OnInit {
             dismissOnPageChange: true,
             content: 'adding a new post...'
         });
+        
         this.loading.present().then(() => {
             //call the service
             return this.postsService.createPost(this.userId, this.postBody, this.imageSrc, this.address);
