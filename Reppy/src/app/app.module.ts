@@ -6,8 +6,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { RegisterPage } from '../pages/register/register';
 import { UsersDetailPage } from '../pages/users-detail/users-detail';
 import { PostAddPage } from '../pages/post-add/post-add';
 import { SearchPage } from '../pages/search/search';
@@ -26,8 +24,6 @@ import { Ionic2RatingModule } from 'ionic2-rating';
         HomePage,
         TabsPage,
         LoginPage,
-        ResetPasswordPage,
-        RegisterPage,
         UsersDetailPage,
         PostAddPage,
         SearchPage,
@@ -45,8 +41,6 @@ import { Ionic2RatingModule } from 'ionic2-rating';
         HomePage,
         TabsPage,
         LoginPage,
-        ResetPasswordPage,
-        RegisterPage,
         UsersDetailPage,
         PostAddPage,
         SearchPage,
