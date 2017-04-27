@@ -13,7 +13,7 @@ for more info on providers and Angular 2 DI.
 export class UsersService {
 
     private data: any;
-    public fireAuth: any;
+    public fireAuth: firebase.auth.Auth;
     public userProfile: any;
 
     constructor(public http: Http) {
@@ -22,16 +22,16 @@ export class UsersService {
     }
 
     loadUser(number) {
-        if(this.data) {
+        if (this.data) {
             return Promise.resolve(this.data);
         }
         return new Promise(resolve => {
             this.http.get('https://randomuser.me/api/?results=' + number)
-            .map(res => res.json())
-            .subscribe(data => {
-                this.data = data.results;
-                resolve(this.data);
-            })
+                .map(res => res.json())
+                .subscribe(data => {
+                    this.data = data.results;
+                    resolve(this.data);
+                })
         })
     }
 
@@ -52,7 +52,7 @@ export class UsersService {
         });
     }
 
-    loginUser(email: string, password: string) : any {
+    loginUser(email: string, password: string): any {
         return this.fireAuth.signInWithEmailAndPassword(email, password);
     }
 
@@ -64,7 +64,7 @@ export class UsersService {
         return this.fireAuth.sendPasswordResetEmail(email);
     }
 
-    forgotPasswordUser(email: any){
+    forgotPasswordUser(email: any) {
         return this.fireAuth.sendPasswordResetEmail(email);
     }
 

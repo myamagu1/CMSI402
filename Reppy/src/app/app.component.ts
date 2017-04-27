@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -15,7 +15,7 @@ export class MyApp {
     // rootPage = TabsPage;
 
 
-    constructor(platform: Platform) {
+    constructor(platform: Platform, private zone: NgZone) {
 
         // Initialize Firebase
         var config = {
@@ -27,29 +27,15 @@ export class MyApp {
         };
         firebase.initializeApp(config);
 
-        var that = this;
-
-        var user = firebase.auth().currentUser;
-
-        if (user) {
-            // User is signed in.
-            that.rootPage = TabsPage;
-        } else {
-            // No user is signed in.
-            that.rootPage = LoginPage;
-        }
-
-        //check logged in status
-        // firebase.auth().onAuthStateChanged(function(user) {
-        //
-        //     if(user) {
-        //         that.rootPage = TabsPage;
-        //     } else {
-        //         that.rootPage = LoginPage;
-        //     }
-        //
-        // });
-
+        firebase.auth().onAuthStateChanged(user => {
+            this.zone.run(() => {
+                if (user) {
+                    this.rootPage = TabsPage;
+                } else {
+                    this.rootPage = LoginPage;
+                }
+            });
+        });
 
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.

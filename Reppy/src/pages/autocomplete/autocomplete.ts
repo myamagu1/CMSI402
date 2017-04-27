@@ -42,12 +42,12 @@ export class AutocompletePage implements OnInit {
             this.autocompleteItems = [];
             return;
         }
-        let me = this;
+        let that = this;
         this.service.getPlacePredictions({ input: this.autocomplete.query, componentRestrictions: {country: 'US'} }, function (predictions, status) {
-            me.autocompleteItems = [];
-            me.zone.run(function () {
+            that.autocompleteItems = [];
+            that.zone.run(function () {
                 predictions.forEach(function (prediction) {
-                    me.autocompleteItems.push(prediction.description);
+                    that.autocompleteItems.push(prediction.description);
                 });
             });
         });

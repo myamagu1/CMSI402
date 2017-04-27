@@ -15,13 +15,13 @@ background: url('img/tomato.jpg') center / cover;
 
 <ion-content class="home">
 
-    <ion-card *ngFor="let post of userPostsLists">
+    <ion-card *ngFor="let post of posts">
 
         <ion-item>
             <ion-avatar item-left>
-                <img src="{{ userPhoto }}">
+                <img src="{{ post.user.photo }}">
             </ion-avatar>
-            <h2>{{ userDisplayName }}</h2>
+            <h2>{{ post.user.username }}</h2>
             <p>{{ post.address }}</p>
         </ion-item>
 

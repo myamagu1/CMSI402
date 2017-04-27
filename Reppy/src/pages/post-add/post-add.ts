@@ -1,17 +1,18 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { NavController, ViewController,LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { Component, ViewChild, ElementRef, OnInit, NgZone } from '@angular/core';
+import { NavController, ViewController, LoadingController, AlertController, ModalController, Loading } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AutocompletePage } from '../autocomplete/autocomplete';
+import { Platform, Tabs } from 'ionic-angular';
 
 declare var google;
 
 @Component({
     selector: 'page-post-add',
     templateUrl: 'post-add.html',
-    providers: [PostsService]
+    providers: [PostsService, Camera, Geolocation]
 })
 
 export class PostAddPage implements OnInit {
@@ -20,11 +21,12 @@ export class PostAddPage implements OnInit {
     private map: any;
     private address: any;
     // private postTitle :any;
-    private postBody : any;
-    private userId : any;
+    private postBody: any;
+    private userId: any;
     private imageSrc: any;
+    private loading: Loading;
 
-    constructor(private navCtrl: NavController, private loadingCtrl: LoadingController,private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController ) {
+    constructor(private navCtrl: NavController, private loadingCtrl: LoadingController, private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController, private geolocation: Geolocation, private camera: Camera, private platform: Platform, private zone: NgZone) {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
         this.address = '';
@@ -34,7 +36,7 @@ export class PostAddPage implements OnInit {
         console.log('Init called');
     }
 
-    showAddressModal () {
+    showAddressModal() {
         let modal = this.modalCtrl.create(AutocompletePage);
         modal.onDidDismiss(data => {
             this.address = data;
@@ -67,78 +69,75 @@ export class PostAddPage implements OnInit {
     }
 
     openGallery() {
-        let camera = new Camera();
-        let cameraOptions: CameraOptions = {
-            sourceType: camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: camera.DestinationType.NATIVE_URI,
-            quality: 100,
-            targetWidth: 1000,
-            targetHeight: 1000,
-            encodingType: camera.EncodingType.JPEG,
-            correctOrientation: true
-        }
+        if (this.platform.is('cordova')) {
+            let camera = new Camera();
+            let cameraOptions: CameraOptions = {
+                sourceType: camera.PictureSourceType.PHOTOLIBRARY,
+                destinationType: camera.DestinationType.NATIVE_URI,
+                quality: 100,
+                targetWidth: 1000,
+                targetHeight: 1000,
+                encodingType: camera.EncodingType.JPEG,
+                correctOrientation: true
+            }
 
-        let loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
-            content: 'adding a photo...'
-        });
-        loading.present();
-
-        loading.dismiss().then(() => {
-            //show pop up
-            let alert = this.alertCtrl.create({
-                title: 'Done!',
-                subTitle: 'successful',
-                buttons: ['OK']
+            let loading = this.loadingCtrl.create({
+                dismissOnPageChange: true,
+                content: 'adding a photo...'
             });
-            alert.present();
-        })
+            loading.present();
 
-        camera.getPicture(cameraOptions).then(file_uri => this.imageSrc = file_uri,
-            err => console.log(err));
-    }
-
-    addNewPost() {
-
-        //add preloader
-        let loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
-            content: 'adding a new post...'
-        });
-        loading.present();
-
-        //call the service
-        this.postsService.createPostService(this.userId, this.postBody, this.imageSrc, this.address).then(() => {
-
-            //clear the fields
-            this.postBody = "";
-            this.imageSrc = "";
-            this.address = "";
-
-            //add toast
             loading.dismiss().then(() => {
                 //show pop up
                 let alert = this.alertCtrl.create({
                     title: 'Done!',
-                    subTitle: 'Post successful',
+                    subTitle: 'successful',
                     buttons: ['OK']
                 });
                 alert.present();
             })
 
-            //close the popup
-            this.viewCtrl.dismiss();
+            camera.getPicture(cameraOptions).then(file_uri => this.imageSrc = file_uri,
+                err => console.log(err));
+        } else {
+            alert("You're in browser!!!");
+        }
+    }
 
+    addNewPost() {
+        //add preloader
+        this.loading = this.loadingCtrl.create({
+            dismissOnPageChange: true,
+            content: 'adding a new post...'
+        });
+        this.loading.present().then(() => {
+            //call the service
+            return this.postsService.createPost(this.userId, this.postBody, this.imageSrc, this.address);
+        }).then(() => {
+            this.zone.run(() => {
+                //clear the fields
+                this.postBody = "";
+                this.imageSrc = "";
+                this.address = "";
+
+                //add toast
+                this.loading.dismiss().then(() => {
+                    (<Tabs>this.navCtrl.parent).select(0);
+                });
+            });
         }, error => {
             //show pop up
-            loading.dismiss().then(() => {
-                let alert = this.alertCtrl.create({
-                    title: 'Error adding new post',
-                    subTitle: error.message,
-                    buttons: ['OK']
+            this.zone.run(() => {
+                this.loading.dismiss().then(() => {
+                    ;
+                    let alert = this.alertCtrl.create({
+                        title: 'Error adding new post',
+                        subTitle: error.message,
+                        buttons: ['OK']
+                    });
+                    alert.present();
                 });
-                alert.present();
-            })
+            });
         });
     }
 }

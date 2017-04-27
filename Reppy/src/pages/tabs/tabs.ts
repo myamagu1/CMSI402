@@ -7,15 +7,9 @@ import { UsersDetailPage } from '../users-detail/users-detail';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
     // this tells the tabs component which Pages
     // should be each tab's root Page
     tab1Root: any = HomePage;
     tab2Root: any = PostAddPage;
     tab3Root: any = UsersDetailPage;
-
-    constructor() {
-
-    }
-
 }

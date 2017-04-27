@@ -26,40 +26,45 @@ export class PostsService {
     }
 
     //view a certain Post
-    viewPostService(postId: any){
+    viewPostService(postId: any) {
         var userRef = this.postsNode.child(postId);
         return userRef.once('value');
     }
 
     //view all posts made by this userId
-    viewUsersPostsService(userId: any){
+    viewUsersPostsService(userId: any) {
         var userRef = this.usersPostsNode.child(userId);
         return userRef.once('value');
     }
 
-    listPostService(){
+    listPostService() {
         return this.postsNode.once('value');
     }
 
-    createPostService(userId: any, postBody: any, imageSrc: any, address: any){
-        // A post entry.
-        var postData = {
-            uid: userId,
-            body: postBody,
-            img: imageSrc,
-            address: address
-        };
+    createPost(userId: any, postBody: any, imageSrc: any, address: any) {
+        if (!postBody) {
+            return firebase.Promise.reject(new Error('You need to type something'));            
+        } else if (!address) {
+            return firebase.Promise.reject(new Error('You need to select a restaurant!'));                        
+        } else {
+            // A post entry.
+            var postData = {
+                uid: userId,
+                body: postBody,
+                img: imageSrc || null,
+                address: address
+            };
 
-        // Get a key for a new Post.
-        var newPostKey = this.postsNode.push().key;
+            // Get a key for a new Post.
+            var newPostKey = this.postsNode.push().key;
 
-        // Write the new post's data simultaneously in the posts list and the user's post list.
-        var updatePath = {};
-        updatePath['/posts/' + newPostKey] = postData;
-        updatePath['/user-posts/' +userId+"/"+ newPostKey] = postData;
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updatePath = {};
+            updatePath['/posts/' + newPostKey] = postData;
+            updatePath['/user-posts/' + userId + "/" + newPostKey] = postData;
 
-        //update both tables simultaneously
-        return this.fireRef.update(updatePath);
-
+            //update both tables simultaneously
+            return this.fireRef.update(updatePath);
+        }
     }
 }
