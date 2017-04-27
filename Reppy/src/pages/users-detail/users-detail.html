@@ -14,8 +14,8 @@ Ionic pages and navigation.
     <ion-navbar>
         <ion-title><button ion-button clear color="secondary"><h5>{{ userDisplayName }}</h5></button></ion-title>
         <ion-buttons end>
-            <!-- <button ion-button color="secondary" clear><ion-icon name="log-out"></ion-icon></button> -->
-            <button ion-button color="secondary" clear (click)="logUserOut()"><ion-icon name="settings"></ion-icon></button>
+            <!--<button ion-button color="secondary" clear (click)="logUserOut()"><ion-icon name="settings"></ion-icon></button>-->
+            <button ion-button color="secondary" clear (click)="redirectToSetting()"><ion-icon name="settings"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -34,7 +34,7 @@ Ionic pages and navigation.
             </button>
         </ion-buttons>
     </div>
-        <!-- <button class="follow" small ion-button primary block>Follow</button> -->
+    <!-- <button class="follow" small ion-button primary block>Follow</button> -->
 
     <hr>
 
@@ -47,7 +47,8 @@ Ionic pages and navigation.
         <img src="{{ post.img }}">
 
         <ion-card-content>
-            <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
+            <rating [(ngModel)]="rate" readOnly="false" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+                nullable="false"></rating>
             {{ post.body }}
         </ion-card-content>
 
@@ -74,5 +75,5 @@ Ionic pages and navigation.
         </ion-row>
 
     </ion-card>
-    
+
 </ion-content>

@@ -10,7 +10,7 @@ import { UsersDetailPage } from '../pages/users-detail/users-detail';
 import { PostAddPage } from '../pages/post-add/post-add';
 import { SearchPage } from '../pages/search/search';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
-// import * as firebase from 'firebase';
+import { Setting } from '../pages/setting/setting';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,7 +27,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
         UsersDetailPage,
         PostAddPage,
         SearchPage,
-        AutocompletePage
+        AutocompletePage,
+        Setting
     ],
     imports: [
         HttpModule,
@@ -44,7 +45,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
         UsersDetailPage,
         PostAddPage,
         SearchPage,
-        AutocompletePage
+        AutocompletePage,
+        Setting
     ],
     providers: [
         StatusBar,

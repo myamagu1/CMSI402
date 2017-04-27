@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
-// import { LoginPage } from '../login/login';
+import { Setting } from '../setting/setting';
 import * as firebase from 'firebase';
 
 
@@ -19,7 +19,7 @@ Ionic pages and navigation.
 })
 export class UsersDetailPage implements OnInit {
 
-    private userPostsLists= [];
+    private userPostsLists = [];
     private userProfileLists: any;
     private userDisplayName: any;
     private userEmail: any;
@@ -49,7 +49,7 @@ export class UsersDetailPage implements OnInit {
             //get user photo
             this.zone.run(() => {
                 this.userPhotoUrl = snapshot.val().photo; //get user photo
-                this.userDisplayName= snapshot.val().username;
+                this.userDisplayName = snapshot.val().username;
             });
         });
 
@@ -72,16 +72,16 @@ export class UsersDetailPage implements OnInit {
             this.userPostsLists.length = 0;
 
             snapshot.forEach(childSnapshot => {
-                
+
                 this.zone.run(() => {
                     var data = childSnapshot.val();
                     data['key'] = childSnapshot.key;
                     this.userPostsLists.push(data);
                 });
 
-                console.log("post details: "+this.userPostsLists);
+                console.log("post details: " + this.userPostsLists);
                 //get the user's detail
-                this.usersService.viewUser(theUserId).then(snapshotUser=> {
+                this.usersService.viewUser(theUserId).then(snapshotUser => {
                     this.zone.run(() => {
                         this.userDisplayName = snapshotUser.val().username;
                         this.userEmail = snapshotUser.val().email;
@@ -89,12 +89,17 @@ export class UsersDetailPage implements OnInit {
                     });
 
                     //check the console section of your browser inspect element
-                    console.log( "user details: "+ snapshotUser.val() );
+                    console.log("user details: " + snapshotUser.val());
                 })
             });
         });
 
         console.log('listPost finished');
+    }
+
+    redirectToSetting() {
+        //redirect here
+        this.navCtrl.push(Setting);
     }
 
     ionViewDidLoad() {
