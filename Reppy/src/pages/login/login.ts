@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController, Loading } from 'ionic-angular';
-// import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
-// import * as firebase from 'firebase';
-
 
 /*
 Generated class for the Login page.
@@ -23,40 +20,32 @@ export class LoginPage implements OnInit {
     public emailField: any;
     public passwordField: any;
     private loading: Loading;
-    private usersList: any;
-
 
     constructor(private alertCtrl: AlertController, private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController) {
         //   this.emailField = "mondo@gmail.com";
         this.emailField = "";
         this.passwordField = "";
-        this.listOurUsers();
     }
 
     ngOnInit() {
         console.log('Init called');
     }
 
+    // Singin
     signUserUp() {
-        this.usersService.signUpUser(this.emailField, this.passwordField).then(authData => {
+        //add preloader
+        this.loading = this.loadingCtrl.create({
+            dismissOnPageChange: true,
+            content: 'Loading...'
+        });
+        this.loading.present().then(() => {
+            this.usersService.signUpUser(this.emailField, this.passwordField);
+        }).then(() => {
             // Successful
             this.navCtrl.setRoot(HomePage);
-
         }, error => {
             //   alert("error logging in: " + error.message);
         });
-
-        this.loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
-        });
-        this.loading.present();
-    }
-
-    listOurUsers() {
-        this.usersService.loadUser(10)
-            .then(data => {
-                this.usersList = data;
-            })
     }
 
     // Login
