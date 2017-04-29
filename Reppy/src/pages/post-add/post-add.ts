@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit, NgZone } from '@angular/core';
-import { NavController, ViewController, LoadingController, AlertController, ModalController, Loading } from 'ionic-angular';
+import { NavController, ViewController, LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -23,7 +23,6 @@ export class PostAddPage implements OnInit {
     private postBody: any;
     private userId: any;
     private imageSrc: any;
-    private loading: Loading;
 
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController, private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController, private geolocation: Geolocation, private camera: Camera, private platform: Platform, private zone: NgZone) {
         //user id of current logged in user
@@ -105,12 +104,12 @@ export class PostAddPage implements OnInit {
 
     addNewPost() {
         //add preloader
-        this.loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
+        let loading = this.loadingCtrl.create({
+            dismissOnPageChange: false,
             content: 'adding a new post...'
         });
 
-        this.loading.present().then(() => {
+        loading.present().then(() => {
             //call the service
             return this.postsService.createPost(this.userId, this.postBody, this.imageSrc, this.address);
         }).then(() => {
@@ -121,14 +120,14 @@ export class PostAddPage implements OnInit {
                 this.address = "";
 
                 //add toast
-                this.loading.dismiss().then(() => {
+                loading.dismiss().then(() => {
                     (<Tabs>this.navCtrl.parent).select(0);
                 });
             });
         }, error => {
             //show pop up
             this.zone.run(() => {
-                this.loading.dismiss().then(() => {
+                loading.dismiss().then(() => {
                     let alert = this.alertCtrl.create({
                         title: 'Error adding new post',
                         subTitle: error.message,

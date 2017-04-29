@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController, Loading } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { HomePage } from '../home/home';
 import { UsersService } from '../../providers/users-service/users-service';
 
 /*
@@ -15,11 +14,11 @@ Ionic pages and navigation.
     templateUrl: 'login.html',
     providers: [UsersService]
 })
+
 export class LoginPage implements OnInit {
 
     public emailField: any;
     public passwordField: any;
-    private loading: Loading;
 
     constructor(private alertCtrl: AlertController, private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController, private zone: NgZone) {
     }
@@ -33,21 +32,24 @@ export class LoginPage implements OnInit {
     // Singin
     signUserUp() {
         //add preloader
-        this.loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
+        let loading = this.loadingCtrl.create({
+            dismissOnPageChange: false,
             content: 'Loading...'
         });
-        this.loading.present().then(() => {
+
+        loading.present().then(() => {
             return this.usersService.signUpUser(this.emailField, this.passwordField);
         }).then(() => {
             this.zone.run(() => {
-                // Successful
-                this.navCtrl.setRoot(HomePage);
+                loading.dismiss().then(() => {
+                    // Successful
+                    this.navCtrl.setRoot(TabsPage);
+                });
             });
         }, error => {
             // alert error message
             this.zone.run(() => {
-                this.loading.dismiss().then(() => {
+                loading.dismiss().then(() => {
                     let alert = this.alertCtrl.create({
                         title: 'Error loggin in',
                         subTitle: error.message,
@@ -62,21 +64,24 @@ export class LoginPage implements OnInit {
     // Login
     submitLogin() {
         //add preloader
-        this.loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
+        let loading = this.loadingCtrl.create({
+            dismissOnPageChange: false,
             content: 'Loading...'
         });
-        this.loading.present().then(() => {
+
+        loading.present().then(() => {
+            //call the service
             return this.usersService.loginUser(this.emailField, this.passwordField);
         }).then(() => {
             this.zone.run(() => {
-                // Successful
-                this.navCtrl.setRoot(TabsPage);
+                loading.dismiss().then(() => {
+                    this.navCtrl.setRoot(TabsPage);
+                });
             });
         }, error => {
             // alert error message
             this.zone.run(() => {
-                this.loading.dismiss().then(() => {
+                loading.dismiss().then(() => {
                     let alert = this.alertCtrl.create({
                         title: 'Error loggin in',
                         subTitle: error.message,
