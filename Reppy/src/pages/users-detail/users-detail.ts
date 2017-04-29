@@ -23,10 +23,13 @@ export class UsersDetailPage implements OnInit {
     private userProfileLists: any;
     private userDisplayName: any;
     private userEmail: any;
-    private userPhoto: any;
     private userPhotoUrl: any;
+    private userPhoto: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService, private postsService: PostsService, private zone: NgZone) {
+    }
+
+    ngOnInit() {
         //current user id
         var myUserId = firebase.auth().currentUser.uid;
         this.displayUser(myUserId);
@@ -34,32 +37,20 @@ export class UsersDetailPage implements OnInit {
         this.userProfileLists = firebase.database().ref('users');
         //get list of posts on page init
         this.listPost(myUserId);
-
-        console.log('Constructor finished');
     }
 
-    ngOnInit() {
-        console.log('Init called');
-    }
 
-    displayUser(theUserId) {
-        this.usersService.viewUser(theUserId).then(snapshot => {
+    displayUser(userId) {
+        this.usersService.viewUser(userId).then(snapshot => {
 
             //get user photo
             this.zone.run(() => {
-                this.userPhotoUrl = snapshot.val().photo; //get user photo
+                this.userPhotoUrl = snapshot.val().photo;
                 this.userDisplayName = snapshot.val().username;
             });
         });
 
         console.log('displayUser called');
-    }
-
-    logUserOut() {
-        //   this.userService.logoutUser();
-        this.usersService.logoutUser().then(() => {
-            window.location.reload();
-        });
     }
 
     listPost(theUserId) {

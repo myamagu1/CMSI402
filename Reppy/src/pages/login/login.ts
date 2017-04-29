@@ -22,12 +22,11 @@ export class LoginPage implements OnInit {
     private loading: Loading;
 
     constructor(private alertCtrl: AlertController, private loadingCtrl: LoadingController, public navParams: NavParams, private navCtrl: NavController, private modalCtrl: ModalController, private usersService: UsersService, private viewCtrl: ViewController, private zone: NgZone) {
-        //   this.emailField = "mondo@gmail.com";
-        this.emailField = "";
-        this.passwordField = "";
     }
 
     ngOnInit() {
+        this.emailField = "";
+        this.passwordField = "";
         console.log('Init called');
     }
 
