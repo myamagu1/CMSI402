@@ -40,6 +40,40 @@ export class UsersService {
         return userRef.once('value');
     }
 
+    updateName(username: any) {
+        return firebase.database().ref('/users')
+            .child(firebase.auth().currentUser.uid).update({
+                username: username
+            });
+    }
+
+    updateEmail(newEmail: string, password: string) {
+        const credential = firebase.auth.EmailAuthProvider
+            .credential(firebase.auth().currentUser.email, password);
+
+        return firebase.auth().currentUser.reauthenticate(credential)
+            .then(user => {
+                firebase.auth().currentUser.updateEmail(newEmail).then(user => {
+                    firebase.database().ref('/users')
+                        .child(firebase.auth().currentUser.uid).update({ email: newEmail });
+                });
+            });
+    }
+
+    updatePassword(newPass: string, oldPassword: string): firebase.Promise<any> {
+        const credential = firebase.auth.EmailAuthProvider
+            .credential(firebase.auth().currentUser.email, oldPassword);
+
+        return firebase.auth().currentUser.reauthenticate(credential)
+            .then(user => {
+                firebase.auth().currentUser.updatePassword(newPass).then(user => {
+                    console.log("Password Changed");
+                }, error => {
+                    console.log(error);
+                });
+            });
+    }
+
     signUpUser(email: string, password: string) {
         return this.fireAuth.createUserWithEmailAndPassword(email, password).then((newUser) => {
             // sign in the user
@@ -53,7 +87,13 @@ export class UsersService {
     }
 
     loginUser(email: string, password: string): any {
-        return this.fireAuth.signInWithEmailAndPassword(email, password);
+        if (!email) {
+            return firebase.Promise.reject(new Error('Enter your email!'));
+        } else if (!password) {
+            return firebase.Promise.reject(new Error('Enter your password!'));
+        } else {
+            return this.fireAuth.signInWithEmailAndPassword(email, password);
+        }
     }
 
     logoutUser() {

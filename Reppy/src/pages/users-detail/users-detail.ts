@@ -22,7 +22,6 @@ export class UsersDetailPage implements OnInit {
     private userPostsLists = [];
     private userProfileLists: any;
     private userDisplayName: any;
-    private userEmail: any;
     private userPhotoUrl: any;
     private userPhoto: any;
 
@@ -55,9 +54,6 @@ export class UsersDetailPage implements OnInit {
 
     listPost(theUserId) {
         this.postsService.viewUsersPostsService(theUserId).then(snapshot => {
-            //empty this array first to avoid duplication of content when value changes in the database
-            //so every time there is a change in the database, empty the array, fetch fresh data from db
-            //this is because we are fetching data with on('value') inside listPostService()
 
             this.userPostsLists.length = 0;
 
@@ -74,7 +70,6 @@ export class UsersDetailPage implements OnInit {
                 this.usersService.viewUser(theUserId).then(snapshotUser => {
                     this.zone.run(() => {
                         this.userDisplayName = snapshotUser.val().username;
-                        this.userEmail = snapshotUser.val().email;
                         this.userPhoto = snapshotUser.val().photo;
                     });
 

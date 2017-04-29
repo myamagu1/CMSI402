@@ -27,10 +27,7 @@ export class HomePage implements OnInit {
     }
 
     listPosts(){
-        firebase.database().ref('posts').on('child_added', snapshot => {
-            //empty this array first to avoid duplication of content when value changes in the database
-            //so every time there is a change in the database, empty the array, fetch fresh data from db
-            
+        firebase.database().ref('posts').on('child_added', snapshot => {            
             console.log('Child added');
 
             let value = snapshot.val();

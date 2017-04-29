@@ -105,7 +105,7 @@ export class PostAddPage implements OnInit {
     addNewPost() {
         //add preloader
         let loading = this.loadingCtrl.create({
-            dismissOnPageChange: false,
+            dismissOnPageChange: true,
             content: 'adding a new post...'
         });
 
