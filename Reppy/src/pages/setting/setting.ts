@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, ViewController, AlertController, LoadingController } from 'ionic-angular';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
+import { Camera } from '@ionic-native/camera';
 import * as firebase from 'firebase';
 
 /**
@@ -13,13 +14,13 @@ import * as firebase from 'firebase';
 @Component({
   selector: 'page-setting',
   templateUrl: 'setting.html',
-  providers: [UsersService, PostsService]
+  providers: [UsersService, PostsService, Camera]
 })
 export class Setting implements OnInit {
 
   private userPhoto: any;
 
-  constructor(public navCtrl: NavController, private loadingCtrl: LoadingController, public viewCtrl: ViewController, private zone: NgZone, private usersService: UsersService, private postsService: PostsService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,  private camera: Camera, private loadingCtrl: LoadingController, public viewCtrl: ViewController, private zone: NgZone, private usersService: UsersService, private postsService: PostsService, private alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -42,9 +43,7 @@ export class Setting implements OnInit {
 
   logUserOut() {
     //   this.userService.logoutUser();
-    this.usersService.logoutUser().then(() => {
-      window.location.reload();
-    });
+    this.usersService.logoutUser();
   }
 
   closeSetting() {
@@ -79,6 +78,7 @@ export class Setting implements OnInit {
 
   updateEmail() {
     let alert = this.alertCtrl.create({
+      message: "Change Email",
       inputs: [
         {
           name: 'newEmail',
@@ -107,6 +107,7 @@ export class Setting implements OnInit {
 
   updatePassword() {
     let alert = this.alertCtrl.create({
+      message: "Change Password",
       inputs: [
         {
           name: 'newPassword',

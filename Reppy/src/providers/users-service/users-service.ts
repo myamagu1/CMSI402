@@ -47,6 +47,13 @@ export class UsersService {
             });
     }
 
+    updatePhoto(photo: any) {
+        return firebase.database().ref('/users')
+            .child(firebase.auth().currentUser.uid).update({
+                photo: photo
+            });
+    }
+
     updateEmail(newEmail: string, password: string) {
         const credential = firebase.auth.EmailAuthProvider
             .credential(firebase.auth().currentUser.email, password);
@@ -97,8 +104,15 @@ export class UsersService {
     }
 
     logoutUser() {
-        return this.fireAuth.signOut();
+        firebase.database().ref('/users')
+            .child(firebase.auth().currentUser.uid).off();
+
+        return firebase.auth().signOut();
     }
+
+    // logoutUser() {
+    //     return this.fireAuth.signOut();
+    // }
 
     showForgotPassword(email: any) {
         return this.fireAuth.sendPasswordResetEmail(email);

@@ -89,7 +89,6 @@ export class PostAddPage implements OnInit {
                 //show pop up
                 let alert = this.alertCtrl.create({
                     title: 'Done!',
-                    subTitle: 'successful',
                     buttons: ['OK']
                 });
                 alert.present();
@@ -98,7 +97,7 @@ export class PostAddPage implements OnInit {
             camera.getPicture(cameraOptions).then(file_uri => this.imageSrc = file_uri,
                 err => console.log(err));
         } else {
-            alert("You can't open a photo library in a browser!!!");
+            alert("You're in browser!!!");
         }
     }
 
