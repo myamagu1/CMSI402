@@ -43,19 +43,16 @@ export class PostsService {
 
     createPost(userId: any, postBody: any, imageSrc: any, address: any, rate: any) {
         if (!postBody) {
-            return firebase.Promise.reject(new Error('You need to type something'));
+            return firebase.Promise.reject(new Error('You need to type something'));            
         } else if (!address) {
-            return firebase.Promise.reject(new Error('You need to select a restaurant!'));
-        } else if (!rate) {
-            return firebase.Promise.reject(new Error('You need to rate the restaurant!'));
+            return firebase.Promise.reject(new Error('You need to select a restaurant!'));                        
         } else {
             // A post entry.
             var postData = {
                 uid: userId,
                 body: postBody,
                 img: imageSrc || null,
-                address: address,
-                rate: rate
+                address: address
             };
 
             // Get a key for a new Post.

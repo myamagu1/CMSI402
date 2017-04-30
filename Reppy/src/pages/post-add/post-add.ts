@@ -24,17 +24,19 @@ export class PostAddPage implements OnInit {
     private userId: any;
     private imageSrc: any;
     private rate: any;
+    private timeCreated: any;
 
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController, private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController, private geolocation: Geolocation, private camera: Camera, private platform: Platform, private zone: NgZone) {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
         this.address = '';
         this.rate = 0;
+
     }
 
     ngOnInit() {
-        console.log('Init called');
-    }
+        var y = firebase.database.ServerValue.TIMESTAMP;
+        console.log(y);    }
 
     showAddressModal() {
         let modal = this.modalCtrl.create(AutocompletePage);
@@ -120,6 +122,7 @@ export class PostAddPage implements OnInit {
                 this.imageSrc = "";
                 this.address = "";
                 this.rate = 0;
+                this.timeCreated = "";
 
                 //add toast
                 loading.dismiss().then(() => {
