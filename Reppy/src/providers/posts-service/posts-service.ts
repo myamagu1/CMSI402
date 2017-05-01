@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
+import * as moment from 'moment';
 
 /*
 Generated class for the PostsService provider.
@@ -16,13 +17,14 @@ export class PostsService {
     private fireRef: any;
     private postsNode: any;
     private usersPostsNode: any;
+    private time: any;
 
     constructor(private http: Http) {
         this.userNode = firebase.database().ref('users');
         this.postsNode = firebase.database().ref('posts');
         this.usersPostsNode = firebase.database().ref('user-posts');
         this.fireRef = firebase.database().ref();
-
+        this.time = firebase.database.ServerValue.TIMESTAMP;
     }
 
     //view a certain Post
@@ -43,23 +45,28 @@ export class PostsService {
 
     createPost(userId: any, postBody: any, imageSrc: any, address: any, rate: any) {
         if (!postBody) {
-            return firebase.Promise.reject(new Error('You need to type something'));            
+            return firebase.Promise.reject(new Error('You need to type something'));
         } else if (!address) {
-            return firebase.Promise.reject(new Error('You need to select a restaurant!'));                        
+            return firebase.Promise.reject(new Error('You need to select a restaurant!'));
+        } else if (!rate) {
+            return firebase.Promise.reject(new Error('You need to rate the restaurant!'));
         } else {
             // A post entry.
-            var postData = {
+            let postData = {
                 uid: userId,
                 body: postBody,
                 img: imageSrc || null,
-                address: address
+                address: address,
+                rate: rate,
+                time: moment(this.time).startOf('day').fromNow()
+                // time: moment(this.time).format('MMMM Do YYYY, h:mm:ss a') // May 1st 2017, 3:59:50 pm
             };
 
             // Get a key for a new Post.
-            var newPostKey = this.postsNode.push().key;
+            let newPostKey = this.postsNode.push().key;
 
             // Write the new post's data simultaneously in the posts list and the user's post list.
-            var updatePath = {};
+            let updatePath = {};
             updatePath['/posts/' + newPostKey] = postData;
             updatePath['/user-posts/' + userId + "/" + newPostKey] = postData;
 
