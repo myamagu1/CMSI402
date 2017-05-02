@@ -58,8 +58,8 @@ export class PostsService {
                 img: imageSrc || null,
                 address: address,
                 rate: rate,
-                time: moment(this.time).startOf('day').fromNow()
-                // time: moment(this.time).format('MMMM Do YYYY, h:mm:ss a') // May 1st 2017, 3:59:50 pm
+                // time: moment(this.time).startOf('day').fromNow()
+                time: moment(this.time).format('LL') 
             };
 
             // Get a key for a new Post.

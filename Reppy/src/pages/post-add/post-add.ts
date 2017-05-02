@@ -3,7 +3,7 @@ import { NavController, ViewController, LoadingController, AlertController, Moda
 import { PostsService } from '../../providers/posts-service/posts-service';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 import { Platform, Tabs } from 'ionic-angular';
 
@@ -70,11 +70,18 @@ export class PostAddPage implements OnInit {
     }
 
     openGallery() {
+
         if (this.platform.is('cordova')) {
+
+            let loading = this.loadingCtrl.create({
+                dismissOnPageChange: true,
+                content: 'Loading...'
+            });
+
             let camera = new Camera();
-            let cameraOptions: CameraOptions = {
+            let cameraOptions = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
-                destinationType: camera.DestinationType.NATIVE_URI,
+                destinationType: camera.DestinationType.FILE_URI,
                 quality: 100,
                 targetWidth: 1000,
                 targetHeight: 1000,
@@ -82,23 +89,22 @@ export class PostAddPage implements OnInit {
                 correctOrientation: true
             }
 
-            let loading = this.loadingCtrl.create({
-                dismissOnPageChange: true,
-                content: 'Loading...'
-            });
-            loading.present();
 
-            loading.dismiss().then(() => {
-                //show pop up
-                let alert = this.alertCtrl.create({
-                    title: 'Done!',
-                    buttons: ['OK']
+            loading.present().then(() => {
+                return camera.getPicture(cameraOptions)
+                    .then(file_uri => this.imageSrc = file_uri,
+                    err => console.log(err));
+            }).then(() => {
+                loading.dismiss().then(() => {
+                    //show pop up
+                    let alert = this.alertCtrl.create({
+                        title: 'Done!',
+                        buttons: ['OK']
+                    });
+                    alert.present();
                 });
-                alert.present();
-            })
+            });
 
-            camera.getPicture(cameraOptions).then(file_uri => this.imageSrc = file_uri,
-                err => console.log(err));
         } else {
             alert("You're in browser!!!");
         }
@@ -109,7 +115,7 @@ export class PostAddPage implements OnInit {
         //add preloader
         let loading = this.loadingCtrl.create({
             dismissOnPageChange: true,
-            content: 'adding a new post...'
+            content: 'Loading...'
         });
 
         loading.present().then(() => {
