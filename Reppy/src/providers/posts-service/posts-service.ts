@@ -41,6 +41,13 @@ export class PostsService {
         return userRef.once('value');
     }
 
+    like(like: any) {
+        return firebase.database().ref('/posts')
+            .child(firebase.auth().currentUser.uid).update({
+                like: this.likePost
+            });
+    }
+
     listPostService() {
         return this.postsNode.once('value');
     }

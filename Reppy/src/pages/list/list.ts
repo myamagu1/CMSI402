@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import * as firebase from 'firebase';
 
@@ -16,7 +16,7 @@ export class List implements OnInit {
 
   private posts: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private zone: NgZone) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private zone: NgZone, private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -39,6 +39,7 @@ export class List implements OnInit {
       firebase.database().ref(`users/${value.uid}`).once('value', snapshot => {
         value.user = snapshot.val();
         this.posts.push(value);
+        this.changeDetector.detectChanges();
       });
     });
   }
