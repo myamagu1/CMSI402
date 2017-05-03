@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SearchPage } from '../search/search';
+import { List } from '../list/list';
 import * as firebase from 'firebase';
 
 @Component({
@@ -48,6 +49,11 @@ export class HomePage implements OnInit {
                 this.changeDetector.detectChanges();
             });
         });
+    }
+
+    redirectToList() {
+        //redirect here
+        this.navCtrl.push(List);
     }
 
 }

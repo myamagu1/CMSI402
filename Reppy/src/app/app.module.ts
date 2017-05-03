@@ -11,6 +11,7 @@ import { PostAddPage } from '../pages/post-add/post-add';
 import { SearchPage } from '../pages/search/search';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { Setting } from '../pages/setting/setting';
+import { List } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +29,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
         PostAddPage,
         SearchPage,
         AutocompletePage,
-        Setting
+        Setting,
+        List
     ],
     imports: [
         HttpModule,
@@ -46,7 +48,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
         PostAddPage,
         SearchPage,
         AutocompletePage,
-        Setting
+        Setting,
+        List
     ],
     providers: [
         StatusBar,
