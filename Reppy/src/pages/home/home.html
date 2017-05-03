@@ -1,8 +1,11 @@
 <ion-header class="home-header">
     <ion-navbar hideBackButton>
-            <ion-title><button ion-button clear color="secondary"><h3>Reppy</h3></button></ion-title>
+        <ion-title><button ion-button clear color="secondary"><h3>Reppy</h3></button></ion-title>
         <ion-buttons>
             <button ion-button color="secondary" clear (click)="redirectToSearchPage()"><ion-icon name="search"></ion-icon></button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button color="secondary" clear><ion-icon name="list-box"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -28,7 +31,8 @@ background: url('img/tomato.jpg') center / cover;
         <img src="{{ post.img }}">
 
         <ion-card-content>
-            <rating [(ngModel)]="post.rate" readOnly="true" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
+            <rating [(ngModel)]="post.rate" readOnly="true" max="3" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+                nullable="false"></rating>
             {{ post.body }}
         </ion-card-content>
 
