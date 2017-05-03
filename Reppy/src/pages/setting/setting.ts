@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { NavController, ViewController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, ViewController, AlertController, LoadingController, Platform } from 'ionic-angular';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
 import { Camera } from '@ionic-native/camera';
@@ -19,8 +19,9 @@ import * as firebase from 'firebase';
 export class Setting implements OnInit {
 
   private userPhoto: any;
+  private photo: any;
 
-  constructor(public navCtrl: NavController,  private camera: Camera, private loadingCtrl: LoadingController, public viewCtrl: ViewController, private zone: NgZone, private usersService: UsersService, private postsService: PostsService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private camera: Camera, private loadingCtrl: LoadingController, public viewCtrl: ViewController, private zone: NgZone, private usersService: UsersService, private postsService: PostsService, private alertCtrl: AlertController, private platform: Platform) {
   }
 
   ngOnInit() {
@@ -50,6 +51,47 @@ export class Setting implements OnInit {
     this.viewCtrl.dismiss();
   }
 
+  updatePhoto() {
+    if (this.platform.is('cordova')) {
+
+      let loading = this.loadingCtrl.create({
+        dismissOnPageChange: true,
+        content: 'Loading...'
+      });
+
+      let camera = new Camera();
+      let cameraOptions = {
+        sourceType: camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: camera.DestinationType.FILE_URI,
+        quality: 100,
+        targetWidth: 1000,
+        targetHeight: 1000,
+        encodingType: camera.EncodingType.JPEG,
+        correctOrientation: true
+      }
+
+
+      loading.present().then(() => {
+        return camera.getPicture(cameraOptions)
+          .then(file_uri => this.photo = file_uri,
+          err => console.log(err));
+      }).then(() => {
+        loading.dismiss().then(() => {
+          this.usersService.updatePhoto(this.photo);
+          //show pop up
+          let alert = this.alertCtrl.create({
+            title: 'Done!',
+            buttons: ['OK']
+          });
+          alert.present();
+        });
+      });
+
+    } else {
+      alert("You're in browser!!!");
+    }
+  }
+
   updateName() {
     let alert = this.alertCtrl.create({
       message: "Add/Change Username",
@@ -68,6 +110,7 @@ export class Setting implements OnInit {
           handler: data => {
             this.zone.run(() => {
               this.usersService.updateName(data.username);
+              // (<Tabs>this.navCtrl.parent).select(2);
             });
           }
         }

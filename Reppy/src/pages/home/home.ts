@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
 
     private posts: any[];
 
-    constructor(public navCtrl: NavController,  private changeDetector: ChangeDetectorRef) {
+    constructor(public navCtrl: NavController, private changeDetector: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -21,13 +21,23 @@ export class HomePage implements OnInit {
         this.listPosts();
     }
 
-    redirectToSearchPage(){
+    redirectToSearchPage() {
         //redirect here
         this.navCtrl.push(SearchPage);
     }
 
-    listPosts(){
-        firebase.database().ref('posts').on('child_added', snapshot => {            
+    // like() {
+    //     let databaseRef = firebase.database().ref(`posts`).child('like');
+    //     databaseRef.transaction(function (like) {
+    //         if (like) {
+    //             like = like + 1;
+    //         }
+    //         return (like || 0) + 1;
+    //     });
+    // }
+
+    listPosts() {
+        firebase.database().ref('posts').on('child_added', snapshot => {
             console.log('Child added');
 
             let value = snapshot.val();

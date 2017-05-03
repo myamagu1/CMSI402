@@ -24,12 +24,14 @@ export class PostAddPage implements OnInit {
     private userId: any;
     private imageSrc: any;
     private rate: any;
+    private likePost: any;
 
     constructor(private navCtrl: NavController, private loadingCtrl: LoadingController, private viewCtrl: ViewController, private postsService: PostsService, private alertCtrl: AlertController, private modalCtrl: ModalController, private geolocation: Geolocation, private camera: Camera, private platform: Platform, private zone: NgZone) {
         //user id of current logged in user
         this.userId = firebase.auth().currentUser.uid;
         this.address = '';
         this.rate = 0;
+        this.likePost = 0;
     }
 
     ngOnInit() {
@@ -120,7 +122,7 @@ export class PostAddPage implements OnInit {
 
         loading.present().then(() => {
             //call the service
-            return this.postsService.createPost(this.userId, this.postBody, this.imageSrc, this.address, this.rate);
+            return this.postsService.createPost(this.userId, this.postBody, this.imageSrc, this.address, this.rate, this.likePost);
         }).then(() => {
             this.zone.run(() => {
                 //clear the fields
@@ -128,6 +130,7 @@ export class PostAddPage implements OnInit {
                 this.imageSrc = "";
                 this.address = "";
                 this.rate = 0;
+                this.likePost = 0;
 
                 //add toast
                 loading.dismiss().then(() => {

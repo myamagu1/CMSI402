@@ -18,6 +18,7 @@ export class PostsService {
     private postsNode: any;
     private usersPostsNode: any;
     private time: any;
+    private likePost: any;
 
     constructor(private http: Http) {
         this.userNode = firebase.database().ref('users');
@@ -25,6 +26,7 @@ export class PostsService {
         this.usersPostsNode = firebase.database().ref('user-posts');
         this.fireRef = firebase.database().ref();
         this.time = firebase.database.ServerValue.TIMESTAMP;
+        this.likePost = 0;
     }
 
     //view a certain Post
@@ -43,7 +45,7 @@ export class PostsService {
         return this.postsNode.once('value');
     }
 
-    createPost(userId: any, postBody: any, imageSrc: any, address: any, rate: any) {
+    createPost(userId: any, postBody: any, imageSrc: any, address: any, rate: any, likePost: any) {
         if (!postBody) {
             return firebase.Promise.reject(new Error('You need to type something'));
         } else if (!address) {
@@ -59,7 +61,8 @@ export class PostsService {
                 address: address,
                 rate: rate,
                 // time: moment(this.time).startOf('day').fromNow()
-                time: moment(this.time).format('LL') 
+                time: moment(this.time).format('LL'),
+                like: likePost
             };
 
             // Get a key for a new Post.

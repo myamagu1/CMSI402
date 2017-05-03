@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UsersService } from '../../providers/users-service/users-service';
 import { PostsService } from '../../providers/posts-service/posts-service';
@@ -25,7 +25,7 @@ export class UsersDetailPage implements OnInit {
     private userPhotoUrl: any;
     private userPhoto: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService, private postsService: PostsService, private zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: UsersService, private postsService: PostsService, private zone: NgZone, private changeDetector: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -48,7 +48,6 @@ export class UsersDetailPage implements OnInit {
                 this.userDisplayName = snapshot.val().username;
             });
         });
-
         console.log('displayUser called');
     }
 
@@ -72,7 +71,7 @@ export class UsersDetailPage implements OnInit {
                         this.userDisplayName = snapshotUser.val().username;
                         this.userPhoto = snapshotUser.val().photo;
                     });
-
+                    this.changeDetector.detectChanges();
                     //check the console section of your browser inspect element
                     console.log("user details: " + snapshotUser.val());
                 })
