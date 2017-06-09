@@ -3,3 +3,7 @@ Tired of untrustworthy restaurant reviews? Finally, an app that lets you follow 
 
 - [Requirements Specification](docs/Requirements_Specification.md)
 - [Software Development Plan](docs/Software_Development_Plan.md)
+
+<p align="center">
+	<img src="../resources/reppy-poster.pdf" alt="Reppy poster">
+</p>
