@@ -4,4 +4,4 @@ Tired of untrustworthy restaurant reviews? Finally, an app that lets you follow 
 - [Requirements Specification](docs/Requirements_Specification.md)
 - [Software Development Plan](docs/Software_Development_Plan.md)
 
-![poster](../resources/reppy-poster-1.png)
+![poster](CMSI402/resources/reppy-poster-1.png)
