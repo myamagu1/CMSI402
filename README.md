@@ -5,5 +5,9 @@ Tired of untrustworthy restaurant reviews? Finally, an app that lets you follow 
 - [Software Development Plan](docs/Software_Development_Plan.md)
 
 <p align="center">
+<<<<<<< HEAD
 	<img src="../resources/reppy-poster.pdf" alt="Reppy poster">
+=======
+	<img src="../resources/reppy-poster-1.png" alt="Reppy poster">
+>>>>>>> a6cdc01c98dc5bd291738acb38104d000e48ac34
 </p>
